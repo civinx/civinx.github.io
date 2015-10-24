@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Civinx]]></title>
   
-  <link href="/105051545141309425310/posts?hl=zh-CN/atom.xml" rel="self"/>
-  <link href="https://plus.google.com/105051545141309425310/posts?hl=zh-CN/"/>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
   <updated>2015-10-24T11:30:44.000Z</updated>
-  <id>https://plus.google.com/105051545141309425310/posts?hl=zh-CN/</id>
+  <id>http://yoursite.com/</id>
   
   <author>
     <name><![CDATA[Civinx]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[偷闲的地儿]]></title>
-    <link href="https://plus.google.com/105051545141309425310/posts?hl=zh-CN/2015/10/24/%E5%81%B7%E9%97%B2%E7%9A%84%E5%9C%B0%E5%84%BF/"/>
-    <id>https://plus.google.com/105051545141309425310/posts?hl=zh-CN/2015/10/24/偷闲的地儿/</id>
+    <link href="http://yoursite.com/2015/10/24/%E5%81%B7%E9%97%B2%E7%9A%84%E5%9C%B0%E5%84%BF/"/>
+    <id>http://yoursite.com/2015/10/24/偷闲的地儿/</id>
     <published>2015-10-24T08:54:34.000Z</published>
     <updated>2015-10-24T11:30:44.000Z</updated>
     <content type="html"><![CDATA[<p>花了三天，在各路大神的帮助下总算是勉强搭完了这<em>避难所</em>。</p>
