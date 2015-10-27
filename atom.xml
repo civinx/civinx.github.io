@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-10-27T13:23:29.000Z</updated>
+  <updated>2015-10-27T13:24:25.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,11 +19,10 @@
     <link href="http://yoursite.com/2015/10/27/2015-10-27/"/>
     <id>http://yoursite.com/2015/10/27/2015-10-27/</id>
     <published>2015-10-27T09:05:17.000Z</published>
-    <updated>2015-10-27T13:23:29.000Z</updated>
+    <updated>2015-10-27T13:24:25.000Z</updated>
     <content type="html"><![CDATA[<h2 id="阉割版N皇后">阉割版N皇后</h2><blockquote>
 <p>Description</p>
-<p>听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？</p>
-<p>Input</p>
+<p>听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？<br><a id="more"></a><br>Input</p>
 <p>测试数据有多组，每组一个数字N（2≤N≤30），表示棋盘的边长。</p>
 <p>Output</p>
 <p>输出棋盘的布置方法的总数。</p>
@@ -97,7 +96,8 @@
     <summary type="html">
     <![CDATA[<h2 id="阉割版N皇后">阉割版N皇后</h2><blockquote>
 <p>Description</p>
-<p>听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允]]>
+<p>听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？<br>]]>
+    
     </summary>
     
   </entry>
