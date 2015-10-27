@@ -13,44 +13,20 @@
     
     <meta name="description" content="阉割版N皇后
 Description
-听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？
-Input
-测试数据有多组，每组一个数字N（2≤N≤30），表示棋盘的边长。
-Output
-输出棋盘的布置方法的总数。
-Sample Input
-2
-3
-Sample">
+听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2015/10/27">
 <meta property="og:url" content="http://yoursite.com/2015/10/27/2015-10-27/index.html">
 <meta property="og:site_name" content="Civinx">
 <meta property="og:description" content="阉割版N皇后
 Description
-听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？
-Input
-测试数据有多组，每组一个数字N（2≤N≤30），表示棋盘的边长。
-Output
-输出棋盘的布置方法的总数。
-Sample Input
-2
-3
-Sample">
-<meta property="og:updated_time" content="2015-10-27T09:47:55.000Z">
+听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？">
+<meta property="og:updated_time" content="2015-10-27T13:15:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2015/10/27">
 <meta name="twitter:description" content="阉割版N皇后
 Description
-听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？
-Input
-测试数据有多组，每组一个数字N（2≤N≤30），表示棋盘的边长。
-Output
-输出棋盘的布置方法的总数。
-Sample Input
-2
-3
-Sample">
+听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？">
 <link rel="publisher" href="105051545141309425310">
 
     
@@ -127,14 +103,13 @@ Sample">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#阉割版N皇后"><span class="toc-number">1.</span> <span class="toc-text">阉割版N皇后</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#阉割版N皇后"><span class="toc-number">1.</span> <span class="toc-text">阉割版N皇后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#好吧，人生第一次大数乘法，阉割版的那种。"><span class="toc-number">2.</span> <span class="toc-text">好吧，人生第一次大数乘法，阉割版的那种。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A题代码"><span class="toc-number">3.</span> <span class="toc-text">A题代码</span></a></li></ol>
 		
 		</div>
 		
 		<h2 id="阉割版N皇后">阉割版N皇后</h2><blockquote>
 <p>Description</p>
-<p>听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？</p>
-<p>Input</p>
+<p>听说过经典的“八皇后”吗？不过，这一次不是八皇后，而是 N 皇后。假设有一个棋盘，是N行N列的，现在有 N 个皇后，需要布置到棋盘上，要求每横行，每纵列只允许有一个皇后。你知道有多少种方法吗？<br><a id="more"></a><br>Input</p>
 <p>测试数据有多组，每组一个数字N（2≤N≤30），表示棋盘的边长。</p>
 <p>Output</p>
 <p>输出棋盘的布置方法的总数。</p>
@@ -175,8 +150,7 @@ Sample">
     <span class="keyword">return</span> <span class="number">0</span>;
 }
 </code></pre><p>然而，当N==11的时候，程序以及临近爆炸。想了想，尼玛循环最多30!次，果然是蠢。咦，30!，似乎发现了什么不可告人的秘密，观察了前五项，果然结果即为n!。脑子里过了一遍，又喷了一遍自己弱智。</p>
-<p>好吧，人生第一次大数乘法，阉割版的那种。</p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<h2 id="好吧，人生第一次大数乘法，阉割版的那种。">好吧，人生第一次大数乘法，阉割版的那种。</h2><h2 id="A题代码">A题代码</h2><pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
 <span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span>
 <span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span>
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
@@ -254,7 +228,7 @@ Sample">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#阉割版N皇后"><span class="toc-number">1.</span> <span class="toc-text">阉割版N皇后</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#阉割版N皇后"><span class="toc-number">1.</span> <span class="toc-text">阉割版N皇后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#好吧，人生第一次大数乘法，阉割版的那种。"><span class="toc-number">2.</span> <span class="toc-text">好吧，人生第一次大数乘法，阉割版的那种。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A题代码"><span class="toc-number">3.</span> <span class="toc-text">A题代码</span></a></li></ol>
  
   </div>
 
