@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-11-07T06:47:46.000Z</updated>
+  <updated>2015-11-07T06:59:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,16 +19,24 @@
     <link href="http://yoursite.com/2015/11/06/%E6%9D%82%E7%A2%8E/"/>
     <id>http://yoursite.com/2015/11/06/杂碎/</id>
     <published>2015-11-06T07:11:51.000Z</published>
-    <updated>2015-11-07T06:47:46.000Z</updated>
-    <content type="html"><![CDATA[<p>差不多一个月了，经常睡到九十点才起。<br>再晚起是傻逼。<br>-2015/11/6</p>
+    <updated>2015-11-07T06:59:26.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><p>差不多一个月了，经常睡到九十点才起。<br></p><p>再晚起是傻逼。<br></p><p>-2015/11/6</p><p>
+</p></li>
+</ul>
 <hr>
-<p>道不同，不相谋、不足与争。<br>-2015/11/7</p>
+<ul>
+<li><p>道不同，不相谋、不足与争。<br></p><p>-2015/11/7</p></li>
+</ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>差不多一个月了，经常睡到九十点才起。<br>再晚起是傻逼。<br>-2015/11/6</p>
+    <![CDATA[<ul>
+<li><p>差不多一个月了，经常睡到九十点才起。<br></p><p>再晚起是傻逼。<br></p><p>-2015/11/6</p><p>
+</p></li>
+</ul>
 <hr>
-<p>道不同，不相谋、不足与争。<br>-2015/11/7</p>
-]]>
+<ul>
+<li><p>道不同，不相谋、不足与争。<br></p><p>-2015/]]>
     </summary>
     
   </entry>
