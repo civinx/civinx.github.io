@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-11-13T08:41:15.000Z</updated>
+  <updated>2015-11-13T14:43:36.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2015/11/06/%E6%9D%82%E7%A2%8E/"/>
     <id>http://yoursite.com/2015/11/06/杂碎/</id>
     <published>2015-11-06T07:11:51.000Z</published>
-    <updated>2015-11-13T08:41:15.000Z</updated>
+    <updated>2015-11-13T14:43:36.000Z</updated>
     <content type="html"><![CDATA[<p></p><p>这里是我每日的杂碎。<br><a id="more"></a></p>
 <hr>
 <ul>
@@ -36,7 +36,8 @@
 </ul>
 <hr>
 <ul>
-<li><p>我看着遍地的红色快递，好像看着一个时代。<br></p><p>-2015.11.13</p></li>
+<li><p>我看着遍地的红色快递，好像看着一个时代。</p></li>
+<li><p>期中考，最快的人十五分钟，我花了三十五钟，大崩。<br></p><p>-2015.11.13</p></li>
 </ul>
 ]]></content>
     <summary type="html">
