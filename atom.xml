@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-21T16:14:53.000Z</updated>
+  <updated>2016-09-22T01:21:22.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/09/21/ACM2016/"/>
     <id>http://yoursite.com/2016/09/21/ACM2016/</id>
     <published>2016-09-21T15:59:59.000Z</published>
-    <updated>2016-09-21T16:14:53.000Z</updated>
+    <updated>2016-09-22T01:21:22.000Z</updated>
     <content type="html"><![CDATA[<h4 id="小鲜肉们看这里！">小鲜肉们看这里！</h4><a id="more"></a>
 <hr>
 <p>各位2016级新童鞋：  </p>
@@ -42,7 +42,7 @@
 <li><p>意志坚定，切忌一日曝、十日寒。愿意长期付出时间，而不是三心二意。</p><p></p></li>
 </ul>
 <hr>
-<h4 id="注意事项">注意事项</h4><ul>
+<h4 id="注意事项：">注意事项：</h4><ul>
 <li><p></p><p>如果你对ACM还不是很了解，请戳这个链接<a href="http://fateud.com/acm/" target="_blank" rel="external">城院ACM-ICPC竞赛简章</a>。  </p><p></p>
 </li>
 <li><p></p><p>对了，我们会在十二月中旬左右举办面向16级新生的程序设计竞赛（新生选拔赛）。</p>
