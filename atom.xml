@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-04T08:06:32.000Z</updated>
+  <updated>2017-01-04T08:11:54.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2017/01/04/readme(final_report)/"/>
     <id>http://yoursite.com/2017/01/04/readme(final_report)/</id>
     <published>2017-01-04T07:47:59.000Z</published>
-    <updated>2017-01-04T08:06:32.000Z</updated>
+    <updated>2017-01-04T08:11:54.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Python3实现简易的markdown解释器">Python3实现简易的markdown解释器</h4><a id="more"></a>
 <h1 id="2016-2017学年第1学期">2016-2017学年第1学期</h1><h2 id="实验报告">实验报告</h2><ul>
 <li>课程名称:Python 程序设计基础</li>
@@ -35,9 +35,9 @@
 <li>wkhtmltopdf: <a href="http://wkhtmltopdf.org/index.html" target="_blank" rel="external">http://wkhtmltopdf.org/index.html</a></li>
 <li>docopt: <a href="http://docopt.org/" target="_blank" rel="external">http://docopt.org</a></li>
 </ul>
-<h3 id="2-_支持的语法">2. 支持的语法</h3><h4 id="1-标题">1.标题</h4><p>标题前使用 # ，例如下述代码块：</p>
+<h3 id="2-_支持的语法">2. 支持的语法</h3><h4 id="1-_标题">1. 标题</h4><p>标题前使用 # ，例如下述代码块：</p>
 <figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 一级标题</span></span><br><span class="line"><span class="preprocessor">## 二级标题</span></span><br><span class="line"><span class="preprocessor">### 三级标题</span></span><br><span class="line"><span class="preprocessor">#### 四级标题</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-列表">2.列表</h4><p>有序列表前使用数字 1.  ， 2.  等，例如：</p>
+<h4 id="2-_列表">2. 列表</h4><p>有序列表前使用数字 1.  ， 2.  等，例如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> item1</span><br><span class="line"><span class="number">2.</span> item2</span><br><span class="line"><span class="number">3.</span> item3</span><br></pre></td></tr></table></figure>
 <ol>
 <li>item1</li>
@@ -55,8 +55,7 @@
 <ul>
 <li>itemz</li>
 </ul>
-<p>####3.代码块</p>
-<p>在代码的上下分别用\<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-_代码块">3. 代码块</h4><p>在代码的上下分别用\<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure></p>
 <p>a = b + c<br>print (a)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#### <span class="number">4.</span> 链接和图片</span></span><br></pre></td></tr></table></figure></p>
 <p>[现实文本](网址)<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">插入链接的样式为[<span class="link_label">显示文本</span>](<span class="link_url">链接地址</span>)</span><br><span class="line"></span><br><span class="line"><span class="header">#### 5. 引用</span></span><br><span class="line"></span><br><span class="line">使用 &gt; 表示后续文字为引用，例如</span><br></pre></td></tr></table></figure></p>
 <blockquote>
