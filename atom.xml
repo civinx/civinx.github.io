@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-04T08:32:04.000Z</updated>
+  <updated>2017-01-04T08:39:30.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,9 @@
     <link href="http://yoursite.com/2017/01/04/readme(final_report)/"/>
     <id>http://yoursite.com/2017/01/04/readme(final_report)/</id>
     <published>2017-01-04T07:47:59.000Z</published>
-    <updated>2017-01-04T08:32:04.000Z</updated>
+    <updated>2017-01-04T08:39:30.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Python3实现简易的markdown解释器">Python3实现简易的markdown解释器</h4><a id="more"></a>
+<blockquote>
 <h1 id="2016-2017学年第1学期">2016-2017学年第1学期</h1><h2 id="实验报告">实验报告</h2><ul>
 <li>课程名称:Python 程序设计基础</li>
 <li>实验项目:大作业</li>
@@ -29,7 +30,8 @@
 <li>学生姓名:陈哲凡</li>
 <li>实验指导教室:郭鸣, 李飞</li>
 </ul>
-<h2 id=""><img src="http://oj8wl05o7.bkt.clouddn.com/4.png" alt=""></h2><h1 id="Python3实现简易的markdown解释器-1">Python3实现简易的markdown解释器</h1><h2 id="一、介绍(说明文档)">一、介绍(说明文档)</h2><p>该简易的 markdown 解释器最终是一个.py文件，能在shall中通过命令将一个 markdown 文件转换成 HTML 和 PDF 文件（之所以称为简易是因为只支持部分语法，支持的语法将会在之后列出）。其原理是借助 docopt 进行命令行解析，随后逐行借助 re 匹配特定的 markdown 语法，向目标文件中添加入对应的 HTML 标签，最后借助 wkhtmltopdf 工具将 HTML 文件转换成 PDF 文件。</p>
+<h2 id=""><img src="http://oj8wl05o7.bkt.clouddn.com/4.png" alt=""></h2></blockquote>
+<h1 id="Python3实现简易的markdown解释器-1">Python3实现简易的markdown解释器</h1><h2 id="一、介绍(说明文档)">一、介绍(说明文档)</h2><p>该简易的 markdown 解释器最终是一个.py文件，能在shall中通过命令将一个 markdown 文件转换成 HTML 和 PDF 文件（之所以称为简易是因为只支持部分语法，支持的语法将会在之后列出）。其原理是借助 docopt 进行命令行解析，随后逐行借助 re 匹配特定的 markdown 语法，向目标文件中添加入对应的 HTML 标签，最后借助 wkhtmltopdf 工具将 HTML 文件转换成 PDF 文件。</p>
 <h3 id="1-_使用前的准备">1. 使用前的准备</h3><p>由于本解释器使用了 wkhtmltopdf 工具，以及第三方库 docopt，所以在使用前，你需要安装它们，在此给出它们的官方网站。</p>
 <ul>
 <li>wkhtmltopdf: <a href="http://wkhtmltopdf.org/index.html" target="_blank" rel="external">http://wkhtmltopdf.org/index.html</a></li>
