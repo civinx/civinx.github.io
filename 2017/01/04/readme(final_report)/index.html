@@ -17,11 +17,11 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/04/readme(final_report)/index.html">
 <meta property="og:site_name" content="Civinx">
 <meta property="og:description" content="Python3实现简易的markdown解释器">
-<meta property="og:image" content="http://yoursite.com/4.png">
-<meta property="og:image" content="http://yoursite.com/1.png">
-<meta property="og:image" content="http://yoursite.com/2.png">
-<meta property="og:image" content="http://yoursite.com/3.png">
-<meta property="og:updated_time" content="2017-01-04T07:48:13.000Z">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/4.png">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/1.png">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/2.png">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/3.png">
+<meta property="og:updated_time" content="2017-01-04T07:58:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ACM实验室招新启事">
 <meta name="twitter:description" content="Python3实现简易的markdown解释器">
@@ -116,7 +116,7 @@
 <li>学生姓名:陈哲凡</li>
 <li>实验指导教室:郭鸣, 李飞</li>
 </ul>
-<h2 id=""><img src="4.png" alt=""></h2><h1 id="Python3实现简易的markdown解释器-1">Python3实现简易的markdown解释器</h1><h2 id="一、介绍(说明文档)">一、介绍(说明文档)</h2><p>该简易的 markdown 解释器最终是一个.py文件，能在shall中通过命令将一个 markdown 文件转换成 HTML 和 PDF 文件（之所以称为简易是因为只支持部分语法，支持的语法将会在之后列出）。其原理是借助 docopt 进行命令行解析，随后逐行借助 re 匹配特定的 markdown 语法，向目标文件中添加入对应的 HTML 标签，最后借助 wkhtmltopdf 工具将 HTML 文件转换成 PDF 文件。</p>
+<h2 id=""><img src="http://oj8wl05o7.bkt.clouddn.com/4.png" alt=""></h2><h1 id="Python3实现简易的markdown解释器-1">Python3实现简易的markdown解释器</h1><h2 id="一、介绍(说明文档)">一、介绍(说明文档)</h2><p>该简易的 markdown 解释器最终是一个.py文件，能在shall中通过命令将一个 markdown 文件转换成 HTML 和 PDF 文件（之所以称为简易是因为只支持部分语法，支持的语法将会在之后列出）。其原理是借助 docopt 进行命令行解析，随后逐行借助 re 匹配特定的 markdown 语法，向目标文件中添加入对应的 HTML 标签，最后借助 wkhtmltopdf 工具将 HTML 文件转换成 PDF 文件。</p>
 <h3 id="1-_使用前的准备">1. 使用前的准备</h3><p>由于本解释器使用了 wkhtmltopdf 工具，以及第三方库 docopt，所以在使用前，你需要安装它们，在此给出它们的官方网站。</p>
 <ul>
 <li>wkhtmltopdf: <a href="http://wkhtmltopdf.org/index.html" target="_blank" rel="external">http://wkhtmltopdf.org/index.html</a></li>
@@ -305,11 +305,11 @@ pattern = re.compile(r'&lt;!--￼<span class="number">17</span>--&gt;
 <p>判断具体是加粗还是斜体，返回正则匹配式</p>
 <p>####5.5 两个处理函数和一个简单的判断函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#　判断 lst 是否全由字符 sym 构成　</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_same</span><span class="params">(lst, sym)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> lst <span class="keyword">or</span> sym * len(lst) == lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理标题</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handleTitle</span><span class="params">(s, n)</span>:</span></span><br><span class="line">    temp = <span class="string">"&lt;h"</span> + repr(n) + <span class="string">"&gt;"</span> + s[n:] + <span class="string">"&lt;/h"</span> + repr(n) + <span class="string">"&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理无序列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handleUnorderd</span><span class="params">(s)</span>:</span></span><br><span class="line">    s = <span class="string">"&lt;ul&gt;&lt;li&gt;"</span> + s[<span class="number">1</span>:]</span><br><span class="line">    s += <span class="string">"&lt;/li&gt;&lt;/ul&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
-<p>##三. 其他说明<br>我将会在压缩包内放入示例文件（其实就是本文件支持的语法那一部分），以及其生成的 HTML 文件 和 PDF 文件.<br><img src="1.png" alt=""><br><img src="2.png" alt=""></p>
+<p>##三. 其他说明<br>我将会在压缩包内放入示例文件（其实就是本文件支持的语法那一部分），以及其生成的 HTML 文件 和 PDF 文件.<br><img src="http://oj8wl05o7.bkt.clouddn.com/1.png" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/2.png" alt=""></p>
 <p>##四. 自评分数<br><strong>优秀</strong></p>
 <p>##五. 评价理由以及心得体会<br>这次大作业的代码框架来自实验楼的一个课程，我在半个月前就开始看这份代码，虽然曾经使用过 markdown (大一上时搭建过Hexo，一个轻量的静态博客，文章用 markdown来写，顺便贴上自己的博客地址 <a href="civinx.com">cinvx.com</a>)，知道其常用的一些语法，然而并看不懂这个解释器，主要是没有学习过正则表达式以及HTML语言，所以也无法理解代码的大思路。</p>
 <p>为此我参加了计蒜课的python程序设计基础，并学习了其中的正则表达式专题，对我快速理解正则表达式和 re 库的使用提供了很大的帮助。以及普及了python语言的一些规范，包括命名规范和编程风格。</p>
-<p><img src="3.png" alt=""></p>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/3.png" alt=""></p>
 <p>在学习的正则表达式后，整个代码就比较容易看懂了，大思路就是按行处理文本，通过正则匹配 markdown 语法，添加对应的 HTML 标签，写到目标文件里。至于如何在命令行运行和生成 PDF 文件，这些都可以通过库来帮助我实现，比如 wkhtmltopdf 能将 HTML 转成 PDF，以及 docopt 能方便地实现命令行程序。这个理解的过程大概花了我断断续续的一周和元旦完整的一天，然后花了一天时间对于需要的功能重写该代码。</p>
 <p>整个大作业过程其实Python的语法是最简单的部分，难点是正则表达式的使用和学习一些 HTML 标签，以及库的使用。得意于这些难点，我也入门了这些难点，这些每一个第一步都是进步。这次 python 公选课给我的帮助还是非常大的。</p>
 <p>根据我学习这门课程所花的精力和时间，以及学习的成果，我给自己的评价为 <strong>优秀</strong>。</p>
