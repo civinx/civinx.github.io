@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-02T13:20:33.000Z</updated>
+  <updated>2017-02-02T13:22:51.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,10 +19,9 @@
     <link href="http://yoursite.com/2017/02/02/fangti/"/>
     <id>http://yoursite.com/2017/02/02/fangti/</id>
     <published>2017-02-02T13:21:21.000Z</published>
-    <updated>2017-02-02T13:20:33.000Z</updated>
+    <updated>2017-02-02T13:22:51.000Z</updated>
     <content type="html"><![CDATA[<h4 id="OJ放题教程">OJ放题教程</h4><a id="more"></a>
-<p>#OJ放(ku)题(li)教程</p>
-<hr>
+<h1 id="OJ放(ku)题(li)教程">OJ放(ku)题(li)教程</h1><hr>
 <p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti1.png" alt=""><br>首先有了管理权限之后点右上角的Admin, 进入管理员界面</p>
 <hr>
 <p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti2.png" alt=""><br>选择AddProblem</p>
@@ -44,8 +43,7 @@
 <hr>
 <p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti10.png" alt=""><br>传完之后看ProblemList, 看到你所在的题目处于Reserved状态, 只有管理员能看见, 点一下, 它就变成了Available, 所有人可见</p>
 <hr>
-<p>#最后, 辛苦放题的你们了!</p>
-]]></content>
+<h1 id="最后,_辛苦放题的你们了!">最后, 辛苦放题的你们了!</h1>]]></content>
     <summary type="html">
     <![CDATA[<h4 id="OJ放题教程">OJ放题教程</h4>]]>
     
