@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-02T13:22:51.000Z</updated>
+  <updated>2017-02-02T13:28:49.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2017/02/02/fangti/"/>
     <id>http://yoursite.com/2017/02/02/fangti/</id>
     <published>2017-02-02T13:21:21.000Z</published>
-    <updated>2017-02-02T13:22:51.000Z</updated>
+    <updated>2017-02-02T13:28:49.000Z</updated>
     <content type="html"><![CDATA[<h4 id="OJ放题教程">OJ放题教程</h4><a id="more"></a>
 <h1 id="OJ放(ku)题(li)教程">OJ放(ku)题(li)教程</h1><hr>
 <p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti1.png" alt=""><br>首先有了管理权限之后点右上角的Admin, 进入管理员界面</p>
@@ -39,7 +39,7 @@
 <hr>
 <p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti7.png" alt=""><br>点框出来的小地球上传</p>
 <hr>
-<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti8.png" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/fangti9.png" alt=""><br>接下来就是操蛋的传数据了, 无法批量传, 只能一个个点选择文件, 一次只能传10个文件, 也就是五组数据, 一道题一般有十组或者十二组数据, 所以比较费时, 上传文件的顺序无所谓, 你只要保证最后文件名.in 和 文件名.out一一对应, 比如bird1.in, bird2.out, 有些数据不是.in和.out形式, 烦请改一下再上传.</p>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti8.png" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/fangti9.png" alt=""><br>接下来就是操蛋的传数据了, 无法批量传, 只能一个个点选择文件, 一次只能传10个文件, 也就是五组数据, 一道题一般有十组或者十二组数据, 所以比较费时, 上传文件的顺序无所谓, 你只要保证最后文件名.in 和 文件名.out一一对应, 比如bird1.in, bird1.out, 有些数据不是.in和.out形式, 烦请改一下再上传.</p>
 <hr>
 <p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti10.png" alt=""><br>传完之后看ProblemList, 看到你所在的题目处于Reserved状态, 只有管理员能看见, 点一下, 它就变成了Available, 所有人可见</p>
 <hr>
