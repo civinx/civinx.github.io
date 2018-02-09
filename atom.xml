@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-02T13:28:49.000Z</updated>
+  <updated>2018-02-09T13:02:23.601Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[线性代数笔记]]></title>
+    <link href="http://yoursite.com/2018/02/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/02/09/线性代数笔记/</id>
+    <published>2018-02-09T12:59:34.000Z</published>
+    <updated>2018-02-09T13:02:23.601Z</updated>
+    <content type="html"><![CDATA[<h3 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h3><p>–<br>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
+<ul>
+<li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
+</ul>
+<ul>
+<li>r = m &lt; n（三维空间上两个不平行平面求交点）（无数解）<br>向量所占的维数等于母空间的维数，但小于向量的个数。<br>前面的条件说明一定能到母空间的任意位置，后面的条件说明有自由向量。<br>通过改变自由向量的系数，可以让其他向量的系数也改变且满足解。<br>所以有无数解。</li>
+</ul>
+<ul>
+<li><p>r = n &lt; m（二维平面上三条直线求交点）（无解或1解）<br>向量所占的维数等于向量的个数，但小于母空间的维数。<br>后面的条件说明向量无论如何组合，也只能到母空间的一个子空间，所以有可能无解。<br>前面的条件说明没有自由向量，如果恰好能到b的位置，那向量的组合也是唯一的。</p>
+</li>
+<li><p>r &lt; n, r &lt; m  （三维空间中，一个平面和一条直线求交点）（无解或无数解）<br>向量所占的维数小于向量的个数，且小于母空间的维数。<br>说明有自由向量 &amp;&amp; 只能到达母空间的某一个子空间。<br>故无解或无数解。</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h3><p>–<br>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
+<ul>
+<li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[OJ放题教程]]></title>
@@ -227,7 +255,7 @@
     <link href="http://yoursite.com/2015/11/06/%E6%9D%82%E7%A2%8E/"/>
     <id>http://yoursite.com/2015/11/06/杂碎/</id>
     <published>2015-11-06T07:11:51.000Z</published>
-    <updated>2016-04-24T01:12:58.000Z</updated>
+    <updated>2016-09-21T15:36:05.000Z</updated>
     <content type="html"><![CDATA[<p></p><p>这里是我每日的杂碎。<br><a id="more"></a></p>
 <hr>
 <ul>
