@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2018-02-09T13:02:23.601Z</updated>
+  <updated>2018-02-18T13:16:08.270Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,12 +15,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[线性代数笔记]]></title>
-    <link href="http://yoursite.com/2018/02/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/02/09/线性代数笔记/</id>
-    <published>2018-02-09T12:59:34.000Z</published>
-    <updated>2018-02-09T13:02:23.601Z</updated>
-    <content type="html"><![CDATA[<h3 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h3><p>–<br>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
+    <title></title>
+    <link href="http://yoursite.com/2018/02/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/02/18/线性代数笔记/</id>
+    <published>2018-02-18T13:16:08.282Z</published>
+    <updated>2018-02-18T13:16:08.270Z</updated>
+    <content type="html"><![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>title: 线性代数笔记<br>date: 2018-02-09 20:59:34</p>
+<h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
 <ul>
 <li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
 </ul>
@@ -33,11 +34,26 @@
 <li><p>r &lt; n, r &lt; m  （三维空间中，一个平面和一条直线求交点）（无解或无数解）<br>向量所占的维数小于向量的个数，且小于母空间的维数。<br>说明有自由向量 &amp;&amp; 只能到达母空间的某一个子空间。<br>故无解或无数解。</p>
 </li>
 </ul>
+<p>–</p>
+<h2 id="四个基本子空间">四个基本子空间</h2><ul>
+<li>矩阵A: m*n，rank = r</li>
+<li>列空间 C(A) dim = r</li>
+<li>左零空间 $$N(A^T)$$ dim = m - r</li>
+<li>行空间 $$C(A^T)$$ dim = r</li>
+<li>零空间 N(A) dim = n - r</li>
+<li>列空间和左零空间位于Rm，其维数相加等于m</li>
+<li>行空间和零空间位于Rn，其维数相加等于n</li>
+</ul>
+<h3 id="理解">理解</h3><ul>
+<li>列空间：由n个向量组成，每个向量是m维的，自然在Rm中。dim = rank是去掉自由变量之外的主列数量，base可以是剩下的主列。</li>
+<li>左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1*m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r</li>
+<li>行空间：由于初等行变换只是行之间的线性组合，所以各行在变化之后仍在原来的行空间上，所以可以通过将矩阵做行最简式得到一组best base，剩下的行数就是rank，也是dim。所以dim = rank = r；矩阵有m行，所以处于Rm上</li>
+<li>零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。</li>
+<li>矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
+</ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h3><p>–<br>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
-<ul>
-<li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）]]>
+    <![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>title: 线性代数笔记<br>date: ]]>
     </summary>
     
   </entry>
