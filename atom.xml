@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2018-02-18T13:21:15.753Z</updated>
+  <updated>2018-02-18T13:23:09.925Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,13 +15,12 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2018/02/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/02/18/线性代数笔记/</id>
-    <published>2018-02-18T13:21:15.758Z</published>
-    <updated>2018-02-18T13:21:15.753Z</updated>
-    <content type="html"><![CDATA[<p>title: 线性代数笔记<br>date: 2018-02-09 20:59:34</p>
-<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+    <title><![CDATA[线性代数笔记]]></title>
+    <link href="http://yoursite.com/2018/02/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/02/09/线性代数笔记/</id>
+    <published>2018-02-09T12:59:34.000Z</published>
+    <updated>2018-02-18T13:23:09.925Z</updated>
+    <content type="html"><![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
 <h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
 <ul>
 <li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
@@ -54,8 +53,8 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>title: 线性代数笔记<br>date: 2018-02-09 20:59:34</p>
-<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?co]]>
+    <![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h2 id="求解Ax=b：可解性和解的结]]>
     </summary>
     
   </entry>
