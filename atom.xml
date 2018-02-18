@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2018-02-18T13:19:20.528Z</updated>
+  <updated>2018-02-18T13:21:15.753Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title></title>
     <link href="http://yoursite.com/2018/02/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2018/02/18/线性代数笔记/</id>
-    <published>2018-02-18T13:19:20.535Z</published>
-    <updated>2018-02-18T13:19:20.528Z</updated>
+    <published>2018-02-18T13:21:15.758Z</published>
+    <updated>2018-02-18T13:21:15.753Z</updated>
     <content type="html"><![CDATA[<p>title: 线性代数笔记<br>date: 2018-02-09 20:59:34</p>
 <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
 <h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
@@ -39,8 +39,8 @@
 <h2 id="四个基本子空间">四个基本子空间</h2><ul>
 <li>矩阵A: m*n，rank = r</li>
 <li>列空间 C(A) dim = r</li>
-<li>左零空间 $$N(A^T)$$ dim = m - r</li>
-<li>行空间 $$C(A^T)$$ dim = r</li>
+<li>左零空间 $N(A^T)$ dim = m - r</li>
+<li>行空间 $C(A^T)$ dim = r</li>
 <li>零空间 N(A) dim = n - r</li>
 <li>列空间和左零空间位于Rm，其维数相加等于m</li>
 <li>行空间和零空间位于Rn，其维数相加等于n</li>
