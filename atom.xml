@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2018-02-18T13:23:09.925Z</updated>
+  <updated>2018-02-18T15:15:50.552Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,24 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[日语笔记]]></title>
+    <link href="http://yoursite.com/2018/02/18/%E6%97%A5%E8%AF%AD%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/02/18/日语笔记/</id>
+    <published>2018-02-18T15:15:50.000Z</published>
+    <updated>2018-02-18T15:15:50.552Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[线性代数笔记]]></title>
     <link href="http://yoursite.com/2018/02/09/linear-algebra/"/>
     <id>http://yoursite.com/2018/02/09/linear-algebra/</id>
     <published>2018-02-09T12:59:34.000Z</published>
-    <updated>2018-02-18T13:23:09.925Z</updated>
+    <updated>2018-02-21T14:42:21.850Z</updated>
     <content type="html"><![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
 <h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
 <ul>
@@ -51,6 +64,7 @@
 <li>零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。</li>
 <li>矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
 </ul>
+<h2 id="图和网络">图和网络</h2><p><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg" alt=""></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
