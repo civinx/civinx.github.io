@@ -28,7 +28,10 @@ r = m = n（二维平面上两条不平行的直线求交点）（1个解）向�
 
 r = m &amp;lt; n（三维">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg">
-<meta property="og:updated_time" content="2018-02-21T14:42:21.850Z">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg">
+<meta property="og:updated_time" content="2018-02-24T17:40:44.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
@@ -65,7 +68,7 @@ r = m &amp;lt; n（三维">
 				<h1 class="site-name"><a href="/" title="Civinx">Civinx</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -104,16 +107,16 @@ r = m &amp;lt; n（三维">
 		<a href="https://plus.google.com/105051545141309425310?rel=author" title="Civinx" target="_blank" itemprop="author">Civinx</a>
 		
   <p class="article-time">
-    <time datetime="2018-02-09T12:59:34.000Z" itemprop="datePublished"> 發表於 2018-02-09</time>
+    <time datetime="2018-02-09T12:59:34.000Z" itemprop="datePublished"> 发表于 2018-02-09</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解Ax=b：可解性和解的结构"><span class="toc-number">1.</span> <span class="toc-text">求解Ax=b：可解性和解的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四个基本子空间"><span class="toc-number">2.</span> <span class="toc-text">四个基本子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图和网络"><span class="toc-number">3.</span> <span class="toc-text">图和网络</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解Ax=b：可解性和解的结构"><span class="toc-number">1.</span> <span class="toc-text">求解Ax=b：可解性和解的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四个基本子空间"><span class="toc-number">2.</span> <span class="toc-text">四个基本子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图和网络"><span class="toc-number">3.</span> <span class="toc-text">图和网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子空间投影"><span class="toc-number">4.</span> <span class="toc-text">子空间投影</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言——为什么要求投影"><span class="toc-number">4.1.</span> <span class="toc-text">前言——为什么要求投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一维的投影"><span class="toc-number">4.2.</span> <span class="toc-text">一维的投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高维空间中的投影"><span class="toc-number">4.3.</span> <span class="toc-text">高维空间中的投影</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -149,6 +152,13 @@ r = m &amp;lt; n（三维">
 <li>矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
 </ul>
 <h2 id="图和网络">图和网络</h2><p><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg" alt=""></p>
+<h2 id="子空间投影">子空间投影</h2><h3 id="前言——为什么要求投影">前言——为什么要求投影</h3><p>试想有一个二维坐标系，以及三个点(1,1),(2,2),(3,2)。问是否有一根直线穿过这三个点。<br>设直线为$C+Dt=b$<br>于是得到三个方程，分别为：<br>$C+D=1$<br>$C+2D=2$<br>$C+3D=2$<br>抽象为矩阵形式为：<br>$\bigl( \begin{smallmatrix} 1 &amp; 1 \ 1 &amp; 2 \ 1 &amp; 3 \end{smallmatrix} \bigr) * \bigl( \begin{smallmatrix} C \ D \end{smallmatrix} \bigr)$<br>也就是$Ax=b$的形式，此时由于b不在A的列空间内，于是无解。于是我们希望找到一条与这三条最接近的一条直线，也就是一个近似解，更具体的，我们希望找到一个最接近A列空间的$b^^,$，由此投影就在此应用。  </p>
+<h3 id="一维的投影">一维的投影</h3><p>二维空间中，一个点投影到一个平面上。<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg" alt=""><br>$$a^T(b-xa)=0$$<br>$$a^Tax=a^Tb$$<br>$$x=\frac{a^Tb}{a^Ta}$$<br>$$p=ax=\frac{aa^Tb}{a^Ta}$$<br>$$P=\frac{aa^T}{a^Ta}$$<br>P（投影矩阵）的性质：</p>
+<ul>
+<li>$p*p=p$</li>
+<li>是对称矩阵</li>
+</ul>
+<h3 id="高维空间中的投影">高维空间中的投影</h3><p>以一条直线投影到一个子空间上（平面）为例<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg" alt=""></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -202,17 +212,17 @@ r = m &amp;lt; n（三维">
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解Ax=b：可解性和解的结构"><span class="toc-number">1.</span> <span class="toc-text">求解Ax=b：可解性和解的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四个基本子空间"><span class="toc-number">2.</span> <span class="toc-text">四个基本子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图和网络"><span class="toc-number">3.</span> <span class="toc-text">图和网络</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解Ax=b：可解性和解的结构"><span class="toc-number">1.</span> <span class="toc-text">求解Ax=b：可解性和解的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四个基本子空间"><span class="toc-number">2.</span> <span class="toc-text">四个基本子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图和网络"><span class="toc-number">3.</span> <span class="toc-text">图和网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子空间投影"><span class="toc-number">4.</span> <span class="toc-text">子空间投影</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言——为什么要求投影"><span class="toc-number">4.1.</span> <span class="toc-text">前言——为什么要求投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一维的投影"><span class="toc-number">4.2.</span> <span class="toc-text">一维的投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高维空间中的投影"><span class="toc-number">4.3.</span> <span class="toc-text">高维空间中的投影</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -223,7 +233,7 @@ r = m &amp;lt; n（三维">
   
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -245,7 +255,7 @@ r = m &amp;lt; n（三维">
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -486,7 +496,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
