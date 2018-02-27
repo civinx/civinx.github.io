@@ -31,7 +31,7 @@ r = m &amp;lt; n（三维">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg">
-<meta property="og:updated_time" content="2018-02-27T16:52:17.942Z">
+<meta property="og:updated_time" content="2018-02-27T16:55:53.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
@@ -135,7 +135,7 @@ r = m &amp;lt; n（三维">
 </ul>
 <p>—</p>
 <h2 id="四个基本子空间"><a href="#四个基本子空间" class="headerlink" title="四个基本子空间"></a>四个基本子空间</h2><ul>
-<li>矩阵A: m*n，rank = r</li>
+<li>矩阵A: m×n，rank = r</li>
 <li>列空间 C(A) dim = r</li>
 <li>左零空间 $N(A^T)$ dim = m - r</li>
 <li>行空间 $C(A^T)$ dim = r</li>
@@ -145,10 +145,10 @@ r = m &amp;lt; n（三维">
 </ul>
 <h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><ul>
 <li>列空间：由n个向量组成，每个向量是m维的，自然在Rm中。dim = rank是去掉自由变量之外的主列数量，base可以是剩下的主列。</li>
-<li>左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1*m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r</li>
+<li>左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1×m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r</li>
 <li>行空间：由于初等行变换只是行之间的线性组合，所以各行在变化之后仍在原来的行空间上，所以可以通过将矩阵做行最简式得到一组best base，剩下的行数就是rank，也是dim。所以dim = rank = r；矩阵有m行，所以处于Rm上</li>
-<li>零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。</li>
-<li>矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
+<li>零空间：本质是让满足A×x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。</li>
+<li>矩阵向量形成的空间——Rn到Rn×n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
 </ul>
 <h2 id="图和网络"><a href="#图和网络" class="headerlink" title="图和网络"></a>图和网络</h2><p><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg" alt=""></p>
 <h2 id="子空间投影"><a href="#子空间投影" class="headerlink" title="子空间投影"></a>子空间投影</h2><h3 id="前言——为什么要求投影"><a href="#前言——为什么要求投影" class="headerlink" title="前言——为什么要求投影"></a>前言——为什么要求投影</h3><p>试想有一个二维坐标系，以及三个点(1,1),(2,2),(3,2)。问是否有一根直线穿过这三个点。<br>设直线为$C+Dt=b$<br>于是得到三个方程，分别为：<br>$C+D=1$<br>$C+2D=2$<br>$C+3D=2$<br>抽象为矩阵形式为：</p>
@@ -170,19 +170,19 @@ r = m &amp;lt; n（三维">
 <h3 id="一维投影"><a href="#一维投影" class="headerlink" title="一维投影"></a>一维投影</h3><p>二维空间中，一个向量投影到一个一条直线（一维子空间）上。<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg" alt=""></p>
 <script type="math/tex; mode=display">a^T(b-xa)=0</script><script type="math/tex; mode=display">a^Tax=a^Tb</script><script type="math/tex; mode=display">x=\frac{a^Tb}{a^Ta}</script><script type="math/tex; mode=display">p=ax=\frac{aa^Tb}{a^Ta}</script><script type="math/tex; mode=display">P=\frac{aa^T}{a^Ta}</script><p>P（投影矩阵）的性质：</p>
 <ul>
-<li>$p*p=p$</li>
+<li>$p×p=p$</li>
 <li>是对称矩阵</li>
 </ul>
 <h3 id="高维投影"><a href="#高维投影" class="headerlink" title="高维投影"></a>高维投影</h3><p>以一个向量投影到一个平面上（多维子空间）为例<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg" alt=""></p>
 <h2 id="正交矩阵和Gram-Schmidt正交化"><a href="#正交矩阵和Gram-Schmidt正交化" class="headerlink" title="正交矩阵和Gram-Schmidt正交化"></a>正交矩阵和Gram-Schmidt正交化</h2><h3 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h3><p>正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影，有  </p>
 <script type="math/tex; mode=display">p=ax=A(A^TA)^{-1}A^T</script><p>如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$<br>有<script type="math/tex">p=ax=Q(Q^TQ)^{-1}Q^T</script><br>由于$Q$每一列$q_i$都互相垂直，长度为1所以有</p>
-<script type="math/tex; mode=display">(q_i)^T*q_j=
+<script type="math/tex; mode=display">(q_i)^T×q_j=
 \begin{cases}
 1& \text{i=j}\\
 0& \text{i!=j}
 \end{cases}</script><p>得到</p>
 <script type="math/tex; mode=display">Q^TQ=I</script><h3 id="Gram-Schmidt正交化"><a href="#Gram-Schmidt正交化" class="headerlink" title="Gram-Schmidt正交化"></a>Gram-Schmidt正交化</h3><p>这个方法主要来自Gram，Schmidt只提供了将向量单位化（向量除以自己的长度），所以国内广泛称其为施密特正交化，有失偏颇。  </p>
-<p>初始条件：$m*n$矩阵$A$，其各列$a_1,a_2…a_n$线性无关</p>
+<p>初始条件：$m×n$矩阵$A$，其各列$a_1,a_2…a_n$线性无关</p>
 <p>目标：将矩阵$A$正交化为正交矩阵$Q$</p>
 <h4 id="一般步骤"><a href="#一般步骤" class="headerlink" title="一般步骤"></a>一般步骤</h4><p>取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）</p>
 <p>现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。<br>将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。</p>
@@ -190,10 +190,10 @@ r = m &amp;lt; n（三维">
 <p>继续处理$a_i$, 想得到$q_i$垂直于 $q_1,q_2…q_{i-1}$并且$a_1,a_2…a_i$ 与 $q_1,q_2…q_i$ 构成的列空间一致<br>将$a_i$分别投影到$q_1,q_2…q_{i-1}$上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$</p>
 <p>得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。</p>
 <h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><p>和$A=LU$分解一样，正交化也有表达式</p>
-<script type="math/tex; mode=display">A=QR</script><script type="math/tex; mode=display">R=Q^TA</script><p>证明R是个$n*n$的上三角矩阵：</p>
+<script type="math/tex; mode=display">A=QR</script><script type="math/tex; mode=display">R=Q^TA</script><p>证明R是个$n×n$的上三角矩阵：</p>
 <ul>
-<li>$Q^T$是$n<em>m$矩阵，$A$是$m</em>n$矩阵，所以R是$n*n$矩阵</li>
-<li>$R_ij=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j&lt;i)$，而所有的$a_j与q_j(j&lt;i)在同一个空间中$，于是$q_i$垂直所有的$a_j,(j&lt;i)$，所以$R$是一个上三角矩阵</li>
+<li>$Q^T$是$n×m$矩阵，$A$是$m×n$矩阵，所以R是$n×n$矩阵</li>
+<li>$R_{ij}=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j&lt;i)$，而所有的$a_j与q_j(j&lt;i)在同一个空间中$，于是$q_i$垂直所有的$a_j,(j&lt;i)$，所以$R$是一个上三角矩阵</li>
 </ul>
   
 	</div>
