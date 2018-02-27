@@ -32,7 +32,7 @@
     <link href="http://yoursite.com/2018/02/09/linear-algebra/"/>
     <id>http://yoursite.com/2018/02/09/linear-algebra/</id>
     <published>2018-02-09T12:59:34.000Z</published>
-    <updated>2018-02-27T17:01:30.741Z</updated>
+    <updated>2018-02-27T17:02:59.021Z</updated>
     <content type="html"><![CDATA[<h2 id="求解Ax-b：可解性和解的结构"><a href="#求解Ax-b：可解性和解的结构" class="headerlink" title="求解Ax=b：可解性和解的结构"></a>求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
 <ul>
 <li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
@@ -91,8 +91,8 @@
 <script type="math/tex; mode=display">p=ax=A(A^TA)^{-1}A^T</script><p>如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$<br>有<script type="math/tex">p=ax=Q(Q^TQ)^{-1}Q^T</script><br>由于$Q$每一列$q_i$都互相垂直，长度为1所以有</p>
 <script type="math/tex; mode=display">(q_i)^T×q_j=
 \begin{cases}
-1& i=j\\
-0& i\neqj
+1& i = j\\
+0& i \neq j
 \end{cases}</script><p>得到</p>
 <script type="math/tex; mode=display">Q^TQ=I</script><h3 id="Gram-Schmidt正交化"><a href="#Gram-Schmidt正交化" class="headerlink" title="Gram-Schmidt正交化"></a>Gram-Schmidt正交化</h3><p>这个方法主要来自Gram，Schmidt只提供了将向量单位化（向量除以自己的长度），所以国内广泛称其为施密特正交化，有失偏颇。  </p>
 <p>初始条件：$m×n$矩阵$A$，其各列$a_1,a_2…a_n$线性无关</p>
