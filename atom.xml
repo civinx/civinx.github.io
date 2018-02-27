@@ -32,7 +32,7 @@
     <link href="http://yoursite.com/2018/02/09/linear-algebra/"/>
     <id>http://yoursite.com/2018/02/09/linear-algebra/</id>
     <published>2018-02-09T12:59:34.000Z</published>
-    <updated>2018-02-27T16:43:18.646Z</updated>
+    <updated>2018-02-27T16:44:54.379Z</updated>
     <content type="html"><![CDATA[<h2 id="求解Ax-b：可解性和解的结构"><a href="#求解Ax-b：可解性和解的结构" class="headerlink" title="求解Ax=b：可解性和解的结构"></a>求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
 <ul>
 <li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
@@ -99,11 +99,15 @@
 <p>目标：将矩阵$A$正交化为正交矩阵$Q$</p>
 <h4 id="一般步骤"><a href="#一般步骤" class="headerlink" title="一般步骤"></a>一般步骤</h4><p>取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）</p>
 <p>现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。<br>将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。</p>
-<script type="math/tex; mode=display">q_2=a_2-\frac{A^Ta_2}{A^TA}A</script><p>（$\frac{A^Ta_2}{A^TA}$是一个常数）</p>
-<p>继续处理$a<em>i$, 想得到$q_i$垂直于 $q_1,q_2…q</em>{i-1}$并且$a<em>1,a_2…a_i$ 与 $q_1,q_2…q_i$ 构成的列空间一致<br>将$a_i$分别投影到$q_1,q_2…q</em>{i-1}$上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$ </p>
-<p>得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。</p>
-<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><p>和$A=LU$分解一样，正交化也有表达式<script type="math/tex">A=QR</script></p>
-<script type="math/tex; mode=display">R=Q^TA</script><p>证明R是个$n*n$的上三角矩阵：</p>
+<script type="math/tex; mode=display">q_2=a_2-\frac{A^Ta_2}{A^TA}A$$($\frac{A^Ta_2}{A^TA}$是一个常数)
+
+继续处理$a_i$, 想得到$q_i$垂直于 $q_1,q_2...q_{i-1}$并且$a_1,a_2...a_i$ 与 $q_1,q_2...q_i$ 构成的列空间一致   
+将$a_i$分别投影到$q_1,q_2...q_{i-1}$上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$
+
+得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。
+
+#### 表达式
+和$A=LU$分解一样，正交化也有表达式$$A=QR</script><script type="math/tex; mode=display">R=Q^TA</script><p>证明R是个$n*n$的上三角矩阵：</p>
 <ul>
 <li>$Q^T$是$n<em>m$矩阵，$A$是$m</em>n$矩阵，所以R是$n*n$矩阵</li>
 <li>$R_ij=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j&lt;i)$，而所有的$a_j与q_j(j&lt;i)在同一个空间中$，于是$q_i$垂直所有的$a_j,(j&lt;i)$，所以$R$是一个上三角矩阵</li>
