@@ -32,8 +32,8 @@
     <link href="http://yoursite.com/2018/02/09/linear-algebra/"/>
     <id>http://yoursite.com/2018/02/09/linear-algebra/</id>
     <published>2018-02-09T12:59:34.000Z</published>
-    <updated>2018-02-27T16:04:42.829Z</updated>
-    <content type="html"><![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+    <updated>2018-02-27T16:12:01.362Z</updated>
+    <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>-->
 <h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
 <ul>
 <li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
@@ -91,7 +91,7 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+    <![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>-->
 <h2 id="求解Ax=b：可解性和解的结]]>
     </summary>
     
