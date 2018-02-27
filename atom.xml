@@ -34,145 +34,65 @@
     <published>2018-02-09T12:59:34.000Z</published>
     <updated>2018-02-27T16:12:01.362Z</updated>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>-->
-## 求解Ax=b：可解性和解的结构
-设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
-
-* r = m = n（二维平面上两条不平行的直线求交点）（1个解）    
-向量所占的维数等于向量的个数又等于母空间的维数。  
-所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。
-
-
-* r = m < n（三维空间上两个不平行平面求交点）（无数解）  
-向量所占的维数等于母空间的维数，但小于向量的个数。  
-前面的条件说明一定能到母空间的任意位置，后面的条件说明有自由向量。  
-通过改变自由向量的系数，可以让其他向量的系数也改变且满足解。  
-所以有无数解。
-
-
-* r = n < m（二维平面上三条直线求交点）（无解或1解）  
-向量所占的维数等于向量的个数，但小于母空间的维数。   
-后面的条件说明向量无论如何组合，也只能到母空间的一个子空间，所以有可能无解。  
-前面的条件说明没有自由向量，如果恰好能到b的位置，那向量的组合也是唯一的。
-
-* r < n, r < m  （三维空间中，一个平面和一条直线求交点）（无解或无数解）  
-向量所占的维数小于向量的个数，且小于母空间的维数。  
-说明有自由向量 && 只能到达母空间的某一个子空间。  
-故无解或无数解。
-
---
-## 四个基本子空间
-* 矩阵A: m*n，rank = r
-* 列空间 C(A) dim = r
-* 左零空间 $N(A^T)$ dim = m - r
-* 行空间 $C(A^T)$ dim = r
-* 零空间 N(A) dim = n - r
-* 列空间和左零空间位于Rm，其维数相加等于m
-* 行空间和零空间位于Rn，其维数相加等于n
-
-### 理解
-* 列空间：由n个向量组成，每个向量是m维的，自然在Rm中。dim = rank是去掉自由变量之外的主列数量，base可以是剩下的主列。
-* 左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1*m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r
-* 行空间：由于初等行变换只是行之间的线性组合，所以各行在变化之后仍在原来的行空间上，所以可以通过将矩阵做行最简式得到一组best base，剩下的行数就是rank，也是dim。所以dim = rank = r；矩阵有m行，所以处于Rm上
-* 零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。
-* 矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。
-
-## 图和网络
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg)
-
-## 子空间投影
-### 前言——为什么要求投影
-试想有一个二维坐标系，以及三个点(1,1),(2,2),(3,2)。问是否有一根直线穿过这三个点。  
-设直线为$C+Dt=b$  
-于是得到三个方程，分别为：  
-$C+D=1$  
-$C+2D=2$  
-$C+3D=2$  
-抽象为矩阵形式为：
-$$
- \left[
- \begin{matrix}
-   1 & 1 \\
-   1 & 2 \\
-   1 & 3
-  \end{matrix}
-  \right] \tag{3}
-$$
-与
-$$
- \left[
- \begin{matrix}
-   C \\
-   D
-  \end{matrix}
-  \right] \tag{3}
-$$
-相乘。
-也就是$Ax=b$的形式，此时由于b不在A的列空间内，于是无解。于是我们希望找到一条与这三条最接近的一条直线，也就是一个近似解，更具体的，我们希望找到一个最接近A列空间的$p$，求出近似解$\hat(x)$，由此投影就在此应用。  
-
-### 一维投影
-二维空间中，一个向量投影到一个一条直线（一维子空间）上。 
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg)
-$$a^T(b-xa)=0$$
-$$a^Tax=a^Tb$$
-$$x=\frac{a^Tb}{a^Ta}$$
-$$p=ax=\frac{aa^Tb}{a^Ta}$$
-$$P=\frac{aa^T}{a^Ta}$$
-P（投影矩阵）的性质：
-* $p*p=p$
-* 是对称矩阵
-
-### 高维投影
-以一个向量投影到一个平面上（多维子空间）为例
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg)
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg)
-
-## 正交矩阵和Gram-Schmidt正交化
-### 正交矩阵
-正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影，有  
-$$p=ax=A(A^TA)^{-1}A^T$$
-如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$
-有$$p=ax=Q(Q^TQ)^{-1}Q^T$$
-由于$Q$每一列$q_i$都互相垂直，长度为1所以有
-$$ (q_i)^T*q_j=
-\begin{cases}
-1& \text{i=j}\\
-0& \text{i!=j}
-\end{cases}$$
-得到
-$$Q^TQ=I$$
-
-### Gram-Schmidt正交化
-这个方法主要来自Gram，Schmidt只提供了将向量单位化（向量除以自己的长度），所以国内广泛称其为施密特正交化，有失偏颇。  
-
-初始条件：$m*n$矩阵$A$，其各列$a_1,a_2...a_n$线性无关
-
-目标：将矩阵$A$正交化为正交矩阵$Q$
-
-#### 一般步骤
-取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）
-
-现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。  
-将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。  
-$$q_2=a_2-\frac{A^Ta_2}{A^TA}*A$$（$\frac{A^Ta_2}{A^TA}$是一个常数）
-
-继续处理$a_i$  
-想得到 $q_i$: 
-* 垂直于 $q_1,q_2...q_{i-1}$  
-* $a_1,a_2...a_i$ 与 $q_1,q_2...q_i$ 构成的列空间一致   
-将 $a_i$ 分别投影到 $q_1,q_2...q_{i-1}$ 上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$ 
-
-得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。
-
-#### 表达式
-和$A=LU$分解一样，正交化也有表达式$$A=QR$$
-$$R=Q^TA$$
-证明R是个$n*n$的上三角矩阵：
-* $Q^T$是$n*m$矩阵，$A$是$m*n$矩阵，所以R是$n*n$矩阵
-* $R_ij=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j]]></content>
+<h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
+<ul>
+<li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
+</ul>
+<ul>
+<li>r = m &lt; n（三维空间上两个不平行平面求交点）（无数解）<br>向量所占的维数等于母空间的维数，但小于向量的个数。<br>前面的条件说明一定能到母空间的任意位置，后面的条件说明有自由向量。<br>通过改变自由向量的系数，可以让其他向量的系数也改变且满足解。<br>所以有无数解。</li>
+</ul>
+<ul>
+<li><p>r = n &lt; m（二维平面上三条直线求交点）（无解或1解）<br>向量所占的维数等于向量的个数，但小于母空间的维数。<br>后面的条件说明向量无论如何组合，也只能到母空间的一个子空间，所以有可能无解。<br>前面的条件说明没有自由向量，如果恰好能到b的位置，那向量的组合也是唯一的。</p>
+</li>
+<li><p>r &lt; n, r &lt; m  （三维空间中，一个平面和一条直线求交点）（无解或无数解）<br>向量所占的维数小于向量的个数，且小于母空间的维数。<br>说明有自由向量 &amp;&amp; 只能到达母空间的某一个子空间。<br>故无解或无数解。</p>
+</li>
+</ul>
+<p>–</p>
+<h2 id="四个基本子空间">四个基本子空间</h2><ul>
+<li>矩阵A: m*n，rank = r</li>
+<li>列空间 C(A) dim = r</li>
+<li>左零空间 $N(A^T)$ dim = m - r</li>
+<li>行空间 $C(A^T)$ dim = r</li>
+<li>零空间 N(A) dim = n - r</li>
+<li>列空间和左零空间位于Rm，其维数相加等于m</li>
+<li>行空间和零空间位于Rn，其维数相加等于n</li>
+</ul>
+<h3 id="理解">理解</h3><ul>
+<li>列空间：由n个向量组成，每个向量是m维的，自然在Rm中。dim = rank是去掉自由变量之外的主列数量，base可以是剩下的主列。</li>
+<li>左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1*m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r</li>
+<li>行空间：由于初等行变换只是行之间的线性组合，所以各行在变化之后仍在原来的行空间上，所以可以通过将矩阵做行最简式得到一组best base，剩下的行数就是rank，也是dim。所以dim = rank = r；矩阵有m行，所以处于Rm上</li>
+<li>零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。</li>
+<li>矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
+</ul>
+<h2 id="图和网络">图和网络</h2><p><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg" alt=""></p>
+<h2 id="子空间投影">子空间投影</h2><h3 id="前言——为什么要求投影">前言——为什么要求投影</h3><p>试想有一个二维坐标系，以及三个点(1,1),(2,2),(3,2)。问是否有一根直线穿过这三个点。<br>设直线为$C+Dt=b$<br>于是得到三个方程，分别为：<br>$C+D=1$<br>$C+2D=2$<br>$C+3D=2$<br>抽象为矩阵形式为：<br>$$<br> \left[<br> \begin{matrix}<br>   1 &amp; 1 \\<br>   1 &amp; 2 \\<br>   1 &amp; 3<br>  \end{matrix}<br>  \right] \tag{3}<br>$$<br>与<br>$$<br> \left[<br> \begin{matrix}<br>   C \\<br>   D<br>  \end{matrix}<br>  \right] \tag{3}<br>$$<br>相乘。<br>也就是$Ax=b$的形式，此时由于b不在A的列空间内，于是无解。于是我们希望找到一条与这三条最接近的一条直线，也就是一个近似解，更具体的，我们希望找到一个最接近A列空间的$p$，求出近似解$\hat(x)$，由此投影就在此应用。  </p>
+<h3 id="一维投影">一维投影</h3><p>二维空间中，一个向量投影到一个一条直线（一维子空间）上。<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg" alt=""><br>$$a^T(b-xa)=0$$<br>$$a^Tax=a^Tb$$<br>$$x=\frac{a^Tb}{a^Ta}$$<br>$$p=ax=\frac{aa^Tb}{a^Ta}$$<br>$$P=\frac{aa^T}{a^Ta}$$<br>P（投影矩阵）的性质：</p>
+<ul>
+<li>$p*p=p$</li>
+<li>是对称矩阵</li>
+</ul>
+<h3 id="高维投影">高维投影</h3><p>以一个向量投影到一个平面上（多维子空间）为例<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg" alt=""></p>
+<h2 id="正交矩阵和Gram-Schmidt正交化">正交矩阵和Gram-Schmidt正交化</h2><h3 id="正交矩阵">正交矩阵</h3><p>正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影，有<br>$$p=ax=A(A^TA)^{-1}A^T$$<br>如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$<br>有$$p=ax=Q(Q^TQ)^{-1}Q^T$$<br>由于$Q$每一列$q_i$都互相垂直，长度为1所以有<br>$$ (q_i)^T*q_j=<br>\begin{cases}<br>1&amp; \text{i=j}\\<br>0&amp; \text{i!=j}<br>\end{cases}$$<br>得到<br>$$Q^TQ=I$$</p>
+<h3 id="Gram-Schmidt正交化">Gram-Schmidt正交化</h3><p>这个方法主要来自Gram，Schmidt只提供了将向量单位化（向量除以自己的长度），所以国内广泛称其为施密特正交化，有失偏颇。  </p>
+<p>初始条件：$m*n$矩阵$A$，其各列$a_1,a_2…a_n$线性无关</p>
+<p>目标：将矩阵$A$正交化为正交矩阵$Q$</p>
+<h4 id="一般步骤">一般步骤</h4><p>取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）</p>
+<p>现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。<br>将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。<br>$$q_2=a_2-\frac{A^Ta_2}{A^TA}*A$$（$\frac{A^Ta_2}{A^TA}$是一个常数）</p>
+<p>继续处理$a_i$<br>想得到 $q_i$: </p>
+<ul>
+<li>垂直于 $q_1,q_2…q_{i-1}$  </li>
+<li>$a_1,a_2…a_i$ 与 $q_1,q_2…q_i$ 构成的列空间一致<br>将 $a_i$ 分别投影到 $q_1,q_2…q_{i-1}$ 上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$ </li>
+</ul>
+<p>得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。</p>
+<h4 id="表达式">表达式</h4><p>和$A=LU$分解一样，正交化也有表达式$$A=QR$$<br>$$R=Q^TA$$<br>证明R是个$n*n$的上三角矩阵：</p>
+<ul>
+<li>$Q^T$是$n<em>m$矩阵，$A$是$m</em>n$矩阵，所以R是$n*n$矩阵</li>
+<li>$R_ij=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j&lt;i)$，而所有的$a_j与q_j(j&lt;i)在同一个空间中$，于是$q_i$垂直所有的$a_j,(j&lt;i)$，所以$R$是一个上三角矩阵</li>
+</ul>
+]]></content>
     <summary type="html">
     <![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>-->
-## 求解Ax=b：可解性和解的结构
-设m为]]>
+<h2 id="求解Ax=b：可解性和解的结]]>
     </summary>
     
   </entry>
@@ -183,71 +103,32 @@ $$R=Q^TA$$
     <id>http://yoursite.com/2017/02/02/fangti/</id>
     <published>2017-02-02T13:21:21.000Z</published>
     <updated>2017-02-02T13:28:49.000Z</updated>
-    <content type="html"><![CDATA[#### OJ放题教程
-
-<a id="more"></a>
-# OJ放(ku)题(li)教程
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti1.png)
-首先有了管理权限之后点右上角的Admin, 进入管理员界面
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti2.png)
-选择AddProblem
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti3.png)
-时限和空间限制参见题面PDF要求
-
-把题面依次复印进去, 不能直接粘贴, 要先点右键出现粘贴按钮
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti4.png)
-在Sorcen内填入该题的出处, 如 NOIP2013提高组
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti5.png)
-Test input和Test output不用填
-
-但是Sample input和Sample output一定要填对! 因为有一组会自动生成一组样例的数据来让程序跑的
-
-然后点submit
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti6.png)
-点Add More Test Data
-
----
-
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti7.png)
-点框出来的小地球上传
-
----
-
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti8.png)
-![](http://oj8wl05o7.bkt.clouddn.com/fangti9.png)
-接下来就是操蛋的传数据了, 无法批量传, 只能一个个点选择文件, 一次只能传10个文件, 也就是五组数据, 一道题一般有十组或者十二组数据, 所以比较费时, 上传文件的顺序无所谓, 你只要保证最后文件名.in 和 文件名.out一一对应, 比如bird1.in, bird1.out, 有些数据不是.in和.out形式, 烦请改一下再上传.
-
----
-
-![](http://oj8wl05o7.bkt.clouddn.com/fangti10.png)
-传完之后看ProblemList, 看到你所在的题目处于Reserved状态, 只有管理员能看见, 点一下, 它就变成了Available, 所有人可见
-
----
-
-# 最后, 辛苦放题的你们了!
-]]></content>
+    <content type="html"><![CDATA[<h4 id="OJ放题教程">OJ放题教程</h4><a id="more"></a>
+<h1 id="OJ放(ku)题(li)教程">OJ放(ku)题(li)教程</h1><hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti1.png" alt=""><br>首先有了管理权限之后点右上角的Admin, 进入管理员界面</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti2.png" alt=""><br>选择AddProblem</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti3.png" alt=""><br>时限和空间限制参见题面PDF要求</p>
+<p>把题面依次复印进去, 不能直接粘贴, 要先点右键出现粘贴按钮</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti4.png" alt=""><br>在Sorcen内填入该题的出处, 如 NOIP2013提高组</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti5.png" alt=""><br>Test input和Test output不用填</p>
+<p>但是Sample input和Sample output一定要填对! 因为有一组会自动生成一组样例的数据来让程序跑的</p>
+<p>然后点submit</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti6.png" alt=""><br>点Add More Test Data</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti7.png" alt=""><br>点框出来的小地球上传</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti8.png" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/fangti9.png" alt=""><br>接下来就是操蛋的传数据了, 无法批量传, 只能一个个点选择文件, 一次只能传10个文件, 也就是五组数据, 一道题一般有十组或者十二组数据, 所以比较费时, 上传文件的顺序无所谓, 你只要保证最后文件名.in 和 文件名.out一一对应, 比如bird1.in, bird1.out, 有些数据不是.in和.out形式, 烦请改一下再上传.</p>
+<hr>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/fangti10.png" alt=""><br>传完之后看ProblemList, 看到你所在的题目处于Reserved状态, 只有管理员能看见, 点一下, 它就变成了Available, 所有人可见</p>
+<hr>
+<h1 id="最后,_辛苦放题的你们了!">最后, 辛苦放题的你们了!</h1>]]></content>
     <summary type="html">
-    <![CDATA[#### OJ放题教程]]>
+    <![CDATA[<h4 id="OJ放题教程">OJ放题教程</h4>]]>
     
     </summary>
     
@@ -259,208 +140,100 @@ Test input和Test output不用填
     <id>http://yoursite.com/2017/01/04/readme(final_report)/</id>
     <published>2017-01-04T07:47:59.000Z</published>
     <updated>2017-01-06T07:19:22.000Z</updated>
-    <content type="html"><![CDATA[#### Python3实现简易的markdown解释器
-
-<a id="more"></a>
-# 2016-2017学年第1学期
-
-## 实验报告
-* 课程名称:Python 程序设计基础
-* 实验项目:大作业
-* 专业班级:软件工程1501
-* 学生学号:31501293
-* 学生姓名:陈哲凡
-* 实验指导教师:郭鸣, 李飞
-
-![](http://oj8wl05o7.bkt.clouddn.com/4.png)
----
-
-# Python3实现简易的markdown解释器
-
-## 一、介绍(说明文档)
-
-该简易的 markdown 解释器最终是一个.py文件，能在shall中通过命令将一个 markdown 文件转换成 HTML 和 PDF 文件（之所以称为简易是因为只支持部分语法，支持的语法将会在之后列出）。其原理是借助 docopt 进行命令行解析，随后逐行借助 re 匹配特定的 markdown 语法，向目标文件中添加入对应的 HTML 标签，最后借助 wkhtmltopdf 工具将 HTML 文件转换成 PDF 文件。
-
-### 1. 使用前的准备
-
-由于本解释器使用了 wkhtmltopdf 工具，以及第三方库 docopt，所以在使用前，你需要安装它们，在此给出它们的官方网站。
-
-- wkhtmltopdf: [http://wkhtmltopdf.org/index.html](http://wkhtmltopdf.org/index.html)
-- docopt: [http://docopt.org](http://docopt.org/)
-
-### 2. 支持的语法
-
-#### 1. 标题
-标题前使用 # ，例如下述代码块：
-
-
-	# 一级标题
-	## 二级标题
-	### 三级标题
-	#### 四级标题
-
-
-#### 2. 列表
-有序列表前使用数字 1.  ， 2.  等，例如：
-
-	1. item1
-	2. item2
-	3. item3
-
-1. item1
-2. item2
-3. item3
-
-无序列表前面加 -，*或者+ ，例如：
-
-	* itemx
-	+ itemy
-	- itemz
-
-* itemx
-+ itemy
-- itemz
-
-#### 3. 代码块
-
-在代码的上下分别用\`\`\`包围：
-
+    <content type="html"><![CDATA[<h4 id="Python3实现简易的markdown解释器">Python3实现简易的markdown解释器</h4><a id="more"></a>
+<h1 id="2016-2017学年第1学期">2016-2017学年第1学期</h1><h2 id="实验报告">实验报告</h2><ul>
+<li>课程名称:Python 程序设计基础</li>
+<li>实验项目:大作业</li>
+<li>专业班级:软件工程1501</li>
+<li>学生学号:31501293</li>
+<li>学生姓名:陈哲凡</li>
+<li>实验指导教师:郭鸣, 李飞</li>
+</ul>
+<h2 id=""><img src="http://oj8wl05o7.bkt.clouddn.com/4.png" alt=""></h2><h1 id="Python3实现简易的markdown解释器-1">Python3实现简易的markdown解释器</h1><h2 id="一、介绍(说明文档)">一、介绍(说明文档)</h2><p>该简易的 markdown 解释器最终是一个.py文件，能在shall中通过命令将一个 markdown 文件转换成 HTML 和 PDF 文件（之所以称为简易是因为只支持部分语法，支持的语法将会在之后列出）。其原理是借助 docopt 进行命令行解析，随后逐行借助 re 匹配特定的 markdown 语法，向目标文件中添加入对应的 HTML 标签，最后借助 wkhtmltopdf 工具将 HTML 文件转换成 PDF 文件。</p>
+<h3 id="1-_使用前的准备">1. 使用前的准备</h3><p>由于本解释器使用了 wkhtmltopdf 工具，以及第三方库 docopt，所以在使用前，你需要安装它们，在此给出它们的官方网站。</p>
+<ul>
+<li>wkhtmltopdf: <a href="http://wkhtmltopdf.org/index.html" target="_blank" rel="external">http://wkhtmltopdf.org/index.html</a></li>
+<li>docopt: <a href="http://docopt.org/" target="_blank" rel="external">http://docopt.org</a></li>
+</ul>
+<h3 id="2-_支持的语法">2. 支持的语法</h3><h4 id="1-_标题">1. 标题</h4><p>标题前使用 # ，例如下述代码块：</p>
+<pre><code><span class="preprocessor"># 一级标题</span>
+<span class="preprocessor">## 二级标题</span>
+<span class="preprocessor">### 三级标题</span>
+<span class="preprocessor">#### 四级标题</span>
+</code></pre><h4 id="2-_列表">2. 列表</h4><p>有序列表前使用数字 1.  ， 2.  等，例如：</p>
+<pre><code><span class="number">1.</span> item1
+<span class="number">2.</span> item2
+<span class="number">3.</span> item3
+</code></pre><ol>
+<li>item1</li>
+<li>item2</li>
+<li>item3</li>
+</ol>
+<p>无序列表前面加 -，*或者+ ，例如：</p>
+<pre><code><span class="bullet">* </span>itemx
+<span class="bullet">+ </span>itemy
+<span class="bullet">- </span>itemz
+</code></pre><ul>
+<li>itemx</li>
+</ul>
+<ul>
+<li>itemy</li>
+</ul>
+<ul>
+<li>itemz</li>
+</ul>
+<h4 id="3-_代码块">3. 代码块</h4><p>在代码的上下分别用```包围：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">a</span> = <span class="tag">b</span> + c</span><br><span class="line">print (a)</span><br></pre></td></tr></table></figure>
-
-#### 4. 链接和图片
-
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\[<span class="link_label">现实文本</span>](<span class="link_url">网址</span>)</span><br></pre></td></tr></table></figure>
-
-插入链接的样式为[显示文本](链接地址)
-
-#### 5. 引用
-
-使用 > 表示后续文字为引用，例如
-
+<h4 id="4-_链接和图片">4. 链接和图片</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\[<span class="link_label">现实文本</span>](<span class="link_url">网址</span>)</span><br></pre></td></tr></table></figure>
+<p>插入链接的样式为<a href="链接地址">显示文本</a></p>
+<h4 id="5-_引用">5. 引用</h4><p>使用 &gt; 表示后续文字为引用，例如</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="blockquote">&gt; 引用文字</span></span><br></pre></td></tr></table></figure>
-
-> 引用文字
-
-
-#### 6. 粗体和斜体
-
-用两个 * 包含一段文本就是粗体的语法，用一个 * 包含一段文本就是斜体
-
+<blockquote>
+<p>引用文字</p>
+</blockquote>
+<h4 id="6-_粗体和斜体">6. 粗体和斜体</h4><p>用两个 <em> 包含一段文本就是粗体的语法，用一个 </em> 包含一段文本就是斜体</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span>粗体文字<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span>斜体文字<span class="keyword">*</span></span><br></pre></td></tr></table></figure>
-
-**粗体文字**
-
-*斜体文字*
-
-
-#### 7. 分割线
-大于等于三个连续的 -
-
+<p><strong>粗体文字</strong></p>
+<p><em>斜体文字</em></p>
+<h4 id="7-_分割线">7. 分割线</h4><p>大于等于三个连续的 -</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">abc</span><br><span class="line">---</span></span><br><span class="line">345</span><br></pre></td></tr></table></figure>
-
-### 3. 使用说明
-
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 md2pdf<span class="class">.py</span> 原文件名 参数 目标文件名</span><br></pre></td></tr></table></figure>
-
+<h3 id="3-_使用说明">3. 使用说明</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 md2pdf<span class="class">.py</span> 原文件名 参数 目标文件名</span><br></pre></td></tr></table></figure>
 <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">h --help     显示帮助文档</span><br><span class="line"></span>-<span class="ruby">v --version  显示版本</span><br><span class="line"></span>-<span class="ruby">o --output   只生成 <span class="constant">HTML</span> 文件</span><br><span class="line"></span>-<span class="ruby">p --print    分别生成 <span class="constant">HTML</span> 文件和 <span class="constant">PDF</span> 文件</span><br><span class="line"></span>-<span class="ruby"><span class="constant">P</span> --<span class="constant">Print</span>    只生成 <span class="constant">PDF</span> 文件</span></span><br></pre></td></tr></table></figure>
-
-例：
-
+<p>例：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 md2pdf<span class="class">.py</span> test1<span class="class">.md</span> -<span class="tag">p</span> test2.pdf</span><br></pre></td></tr></table></figure>
-
-生成一个 test2.pdf 文件和一个 translation_result.html 文件
-
-## 二、代码分析
-### 1. docopt文档
-
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">""</span>"md2pdf</span><br><span class="line"></span><br><span class="line">translates markdwon <span class="keyword">file</span> into html or pdf, and support picture insertion.</span><br><span class="line"></span><br><span class="line">Usage: </span><br><span class="line">    md2pdf &lt;sourcefile&gt; &lt;outputfile&gt; [options]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">    -<span class="keyword">h</span> --<span class="keyword">help</span>     show <span class="keyword">help</span> document.</span><br><span class="line">    -v --<span class="keyword">version</span>  show <span class="keyword">version</span> information.</span><br><span class="line">    -o --output   <span class="keyword">translate</span> sourcefile into html <span class="keyword">file</span>.</span><br><span class="line">    -p --<span class="keyword">print</span>    <span class="keyword">translate</span> sourcefile into pdf <span class="keyword">file</span> and html <span class="keyword">file</span> respectively.</span><br><span class="line">    -P --<span class="keyword">Print</span>    <span class="keyword">translate</span> sourcefile into pdf <span class="keyword">file</span> only.</span><br><span class="line"><span class="string">""</span>"</span><br></pre></td></tr></table></figure>
-
-这部分在接下来会作为 `__doc__` 来初始化 docopt 
-
-docopt 会自动对其做命令行解释，这个过程不用我们来操心，十分方便
-
-### 2. 需要导入的库和全局状态
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os,re</span><br><span class="line"><span class="keyword">import</span> sys,getopt</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> docopt <span class="keyword">import</span> docopt</span><br><span class="line"></span><br><span class="line">__version__ = <span class="string">'1.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 有序序列状态</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ORDERLIST</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    Init = <span class="number">1</span></span><br><span class="line">    List = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 块状态</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BLOCK</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    Init = <span class="number">1</span></span><br><span class="line">    Block = <span class="number">2</span></span><br><span class="line">    CodeBlock = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义全局状态，并初始化状态</span></span><br><span class="line"><span class="comment"># table_state = TABLE.Init</span></span><br><span class="line">orderList_state = ORDERLIST.Init</span><br><span class="line">block_state = BLOCK.Init</span><br><span class="line">is_code = <span class="keyword">False</span></span><br><span class="line">is_normal = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-
-这些全局变量帮程序来表示当前文本的状态，比如是否为代码块的开头、中间、结尾，以此来加入合适的 HTML 标签
-
-### 3. 主函数
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    dest_file = <span class="string">"translation_result.html"</span></span><br><span class="line">    dest_pdf_file = <span class="string">"translation_result.pdf"</span></span><br><span class="line"></span><br><span class="line">    only_pdf = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    args = docopt(__doc__, version=__version__)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#只要HTML，如果参数是-P，即HTML和PDF都要生成，HTML采用默认文件名</span></span><br><span class="line">    dest_file = args[<span class="string">'&lt;outputfile&gt;'</span>] <span class="keyword">if</span> args[<span class="string">'--output'</span>] <span class="keyword">else</span> dest_file</span><br><span class="line"></span><br><span class="line">    <span class="comment">#需要生成PDF</span></span><br><span class="line">    dest_pdf_file = args[<span class="string">'&lt;outputfile&gt;'</span>] <span class="keyword">if</span> args[<span class="string">'--print'</span>] <span class="keyword">or</span> args[<span class="string">'--Print'</span>] <span class="keyword">else</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    run(args[<span class="string">'&lt;sourcefile&gt;'</span>], dest_file, dest_pdf_file, args[<span class="string">'--Print'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-其中args是docopt返回的一个字典，其key和value是根据我们在开头写的注释来生成的，如`args[‘\<sourcefile>’]`就会返回用户在命令行输入的原文件名。
-
-### 4. 执行函数
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">def run(source_file, dest_file, dest_pdf_file, only_pdf):</span><br><span class="line">    # 获取文件名</span><br><span class="line">    file_name = source_file</span><br><span class="line">    # 转换后的 HTML 文件名</span><br><span class="line">    dest_name = dest_file</span><br><span class="line">    # 转换后的 PDF 文件名</span><br><span class="line">    dest_pdf_name = dest_pdf_file</span><br><span class="line"></span><br><span class="line">    # 获取文件后缀</span><br><span class="line">    _, suffix = os.path.splitext(file_name)</span><br><span class="line">    if suffix not in [".md",".markdown",".mdown","mkd"]:</span><br><span class="line">        print('Error: the file should be in markdown format')</span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    if only_pdf:</span><br><span class="line">        dest_name = ".~temp~.html"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    f = open(file_name, "r")</span><br><span class="line">    f_r = open(dest_name, "w")</span><br><span class="line"></span><br><span class="line">    # 往文件中填写 HTML 的一些属性</span><br><span class="line">    f_r.write("""<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"><span class="tag">div</span> <span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;<span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Times New Roman"</span>,Georgia,Serif</span></span></span>&#125;\</span><br><span class="line">            <span class="id">#wrapper</span> <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">100%</span></span></span>; <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;&#125;</span><span class="id">#left</span> <span class="rules">&#123; <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>; \</span><br><span class="line">            <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10%</span></span></span>;  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;  &#125;</span><span class="id">#second</span> <span class="rules">&#123;   <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;   <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">80%</span></span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;   \</span><br><span class="line">            &#125;</span><span class="id">#right</span> <span class="rules">&#123;<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10%</span></span></span>;  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>; \</span><br><span class="line">            &#125;</span></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"wrapper"</span>&gt;</span> <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"left"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"second"</span>&gt;</span>""")</span><br><span class="line">    f_r.write("""<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>/&gt;</span>""")</span><br><span class="line">    </span><br><span class="line">    # 逐行解析 markdwon 文件</span><br><span class="line">    for eachline in f:</span><br><span class="line">        result = parse(eachline)</span><br><span class="line">        if result != "":</span><br><span class="line">            f_r.write(result)</span><br><span class="line"></span><br><span class="line">    f_r.write("""<span class="tag">&lt;<span class="title">br</span> /&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"right"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>""")</span><br><span class="line"></span><br><span class="line">    f_r.close()</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">    # 调用扩展 wkhtmltopdf 将 HTML 文件转换成 PDF</span><br><span class="line">    if dest_pdf_name != "" or only_pdf:</span><br><span class="line">        call(["wkhtmltopdf", dest_name, dest_pdf_name])</span><br><span class="line">    # 如果有必要，删除中间过程生成的 HTML 文件</span><br><span class="line">    if only_pdf:</span><br><span class="line">        call(["rm", dest_name])</span><br></pre></td></tr></table></figure>
-
-### 5. 转换函数
-
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">def parse(input):</span><br><span class="line">    global block_state, is_normal</span><br><span class="line">    is_normal = <span class="type">True</span></span><br><span class="line">    <span class="literal">result</span> = input</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检测当前 input 解析状态</span></span><br><span class="line">    <span class="literal">result</span> = test_state(input)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#如果是代码块，那再test_state中已经处理完了，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> block_state == <span class="type">BLOCK</span>.<span class="type">Block</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分析标题标记 </span></span><br><span class="line">    title_rank = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="type">range</span>(<span class="number">6</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> input[:i] == '<span class="comment">#'*i:</span></span><br><span class="line">            title_rank = i</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> title_rank != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 处理标题，转化为相应的 HTML 文本</span></span><br><span class="line">        <span class="literal">result</span> = handleTitle(input, title_rank)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分析分割线标记 --</span></span><br><span class="line">    <span class="keyword">if</span> len(input) &gt; <span class="number">2</span> <span class="keyword">and</span> all_same(input[:-<span class="number">1</span>], '-') <span class="keyword">and</span> input[-<span class="number">1</span>] == '\n':</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;hr&gt;"</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析无序列表</span></span><br><span class="line">    unorderd = ['+', '-']</span><br><span class="line">    <span class="keyword">if</span> <span class="literal">result</span> != <span class="string">""</span> <span class="keyword">and</span> <span class="literal">result</span>[<span class="number">0</span>] <span class="keyword">in</span> unorderd :</span><br><span class="line">        <span class="literal">result</span> = handleUnorderd(<span class="literal">result</span>)</span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line"></span><br><span class="line">    f = input[<span class="number">0</span>]</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    sys_q = <span class="type">False</span></span><br><span class="line">    <span class="keyword">while</span> f == '&gt;':</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        f = input[count]</span><br><span class="line">        sys_q = <span class="type">True</span></span><br><span class="line">    <span class="comment">#&lt;b&gt;是粗体</span></span><br><span class="line">    <span class="keyword">if</span> sys_q:</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;blockquote style=\"color:#8fbc8f\"&gt; "</span>*count + <span class="string">"&lt;b&gt;"</span> + input[count:] + <span class="string">"&lt;/b&gt;"</span> + <span class="string">"&lt;/blockquote&gt;"</span>*count</span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 处理特殊标记，比如 **, *</span></span><br><span class="line">    <span class="literal">result</span> = tokenHandler(<span class="literal">result</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析链接</span></span><br><span class="line">    <span class="literal">result</span> = link_image(<span class="literal">result</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#空行换行</span></span><br><span class="line">    pa = re.compile(r'^(\s)*$')</span><br><span class="line">    a = pa.match(input)</span><br><span class="line">    <span class="keyword">if</span> input[-<span class="number">1</span>] == <span class="string">"\n"</span> <span class="keyword">and</span> is_normal == <span class="type">True</span> <span class="keyword">and</span> <span class="keyword">not</span> a :</span><br><span class="line">        <span class="literal">result</span>+=<span class="string">"&lt;br /&gt;"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span></span><br></pre></td></tr></table></figure>
-
-通俗易懂的说，这个函数输入一行文本，通过 python 中的 re 库进行正则匹配 markdown语法，然后在文本中添加对应的 HTML 标签，然后返回处理好的行
-
-下面将列出转换函数的辅助函数。
-
-#### 5.1 处理文本块
-
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">def test_state(input):</span><br><span class="line">    global orderList_state, block_state, is_code</span><br><span class="line">    <span class="type">Code_List</span> = [<span class="string">"python\n"</span>, <span class="string">"c++\n"</span>, <span class="string">"c\n"</span>]</span><br><span class="line"></span><br><span class="line">    <span class="literal">result</span> = input</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构建正则表达式规则</span></span><br><span class="line">    <span class="comment"># 匹配块标识</span></span><br><span class="line">    pattern = re.compile(r'```(\s)*\n')</span><br><span class="line">    a = pattern.match(input)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 普通块的开始</span></span><br><span class="line">    <span class="keyword">if</span> a <span class="keyword">and</span> block_state == <span class="type">BLOCK</span>.<span class="type">Init</span>:</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;blockquote&gt;"</span></span><br><span class="line">        block_state = <span class="type">BLOCK</span>.<span class="type">Block</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment"># 特殊代码块</span></span><br><span class="line">    <span class="keyword">elif</span> len(input) &gt; <span class="number">4</span> <span class="keyword">and</span> input[<span class="number">0</span>:<span class="number">3</span>] == '```' <span class="keyword">and</span> (input[<span class="number">3</span>:<span class="number">9</span>] == <span class="string">"python"</span> <span class="keyword">or</span> input[<span class="number">3</span>:<span class="number">6</span>] == <span class="string">"c++"</span> <span class="keyword">or</span> input[<span class="number">3</span>:<span class="number">4</span>]== <span class="string">"c"</span>) <span class="keyword">and</span> block_state == <span class="type">BLOCK</span>.<span class="type">Init</span>:</span><br><span class="line">        block_state = <span class="type">BLOCK</span>.<span class="type">Block</span></span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;code&gt;&lt;br /&gt;"</span></span><br><span class="line">        is_code = <span class="type">True</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment"># 块结束</span></span><br><span class="line">    <span class="keyword">elif</span> block_state == <span class="type">BLOCK</span>.<span class="type">Block</span> <span class="keyword">and</span> input == '```\n':</span><br><span class="line">        <span class="keyword">if</span> is_code:</span><br><span class="line">            <span class="literal">result</span> = <span class="string">"&lt;/code&gt;"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="literal">result</span> = <span class="string">"&lt;/blockquote&gt;"</span></span><br><span class="line">        block_state = <span class="type">BLOCK</span>.<span class="type">Init</span></span><br><span class="line">        is_code = <span class="type">False</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="keyword">elif</span> block_state == <span class="type">BLOCK</span>.<span class="type">Block</span>:</span><br><span class="line">        pattern = re.compile(r'[\n\r\v\f\ ]')</span><br><span class="line">        <span class="literal">result</span> = pattern.sub(<span class="string">"&amp;nbsp"</span>, <span class="literal">result</span>)</span><br><span class="line">        pattern = re.compile(r'\t')</span><br><span class="line">        <span class="literal">result</span> = pattern.sub(<span class="string">"&amp;nbsp"</span> * <span class="number">4</span>, <span class="literal">result</span>)</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;span&gt;"</span> + <span class="literal">result</span> + <span class="string">"&lt;/span&gt;&lt;br /&gt;"</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析有序序列</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#列表开头</span></span><br><span class="line">    <span class="keyword">if</span> len(input) &gt; <span class="number">2</span> <span class="keyword">and</span> input[<span class="number">0</span>].isdigit() <span class="keyword">and</span> input[<span class="number">1</span>] == '.' <span class="keyword">and</span> orderList_state == <span class="type">ORDERLIST</span>.<span class="type">Init</span>:</span><br><span class="line">        orderList_state = <span class="type">ORDERLIST</span>.<span class="type">List</span></span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;ol&gt;&lt;li&gt;"</span> + input[<span class="number">2</span>:] + <span class="string">"&lt;/li&gt;"</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment">#列表中间</span></span><br><span class="line">    <span class="keyword">elif</span> len(input) &gt; <span class="number">2</span> <span class="keyword">and</span>  input[<span class="number">0</span>].isdigit() <span class="keyword">and</span> input[<span class="number">1</span>] == '.' <span class="keyword">and</span> orderList_state == <span class="type">ORDERLIST</span>.<span class="type">List</span>:</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;li&gt;"</span> + input[<span class="number">2</span>:] + <span class="string">"&lt;/li&gt;"</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment">#列表结束</span></span><br><span class="line">    <span class="keyword">elif</span> orderList_state == <span class="type">ORDERLIST</span>.<span class="type">List</span> <span class="keyword">and</span> (len(input) &lt;= <span class="number">2</span> <span class="keyword">or</span> input[<span class="number">0</span>].isdigit() == <span class="type">False</span> <span class="keyword">or</span> input[<span class="number">1</span>] != '.'):</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;/ol&gt;"</span> + input</span><br><span class="line">        orderList_state = <span class="type">ORDERLIST</span>.<span class="type">Init</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span></span><br></pre></td></tr></table></figure>
-
-这个函数能处理代码块和特殊代码块(三个点后加语言)，和有序列表和无序列表
-
-然而在特殊代码块周围加上\<code>\</code>后好像显示并没有什么区别，所以没有算在支持的语法中。
-
-
-#### 5.2 链接处理函数
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">link_image</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="comment"># 超链接</span></span><br><span class="line">    <span class="comment"># pattern = re.compile(r'\\\[(.*)\]\((.*)\)')</span></span><br><span class="line">    pattern = re.compile(<span class="string">r'\[(.*)\]\((.*)\)'</span>)</span><br><span class="line">    match = pattern.finditer(s)</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> match:</span><br><span class="line">        <span class="keyword">if</span> a:</span><br><span class="line">            text, url = a.group(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">            <span class="comment">#左闭右开的区间</span></span><br><span class="line">            x, y = a.span()</span><br><span class="line">            s = s[:x] + <span class="string">"&lt;a href="</span> + url + <span class="string">" target=\"_blank\"&gt;"</span> + text + <span class="string">"&lt;/a&gt;"</span> + s[y:]</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
-
-为了处理方便（偏移量没处理好），这个函数只能匹配一行中的第一个链接
-
-#### 5.3 处理加粗、斜体标识
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenHandler</span><span class="params">(s)</span>:</span></span><br><span class="line">    l = [<span class="string">'b'</span>, <span class="string">'i'</span>]</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">'**'</span>, <span class="string">'*'</span>]:</span><br><span class="line">        pattern = re.compile(tokenTemplate(s,i))</span><br><span class="line">        match = pattern.finditer(s)</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> match:</span><br><span class="line">            <span class="keyword">if</span> a:</span><br><span class="line">                content = a.group(<span class="number">1</span>)</span><br><span class="line">                x,y = a.span()</span><br><span class="line">                <span class="comment"># &lt;b&gt;&lt;/b&gt;为7个字符 当*时，添加一次字符穿边长(7-2=5)个单位，当**时，增加(7-4=3）个单位</span></span><br><span class="line">                c = <span class="number">3</span></span><br><span class="line">                <span class="keyword">if</span> i == <span class="string">'*'</span>:</span><br><span class="line">                    c = <span class="number">5</span></span><br><span class="line">                s = s[:x+c*k] + <span class="string">"&lt;"</span> + l[j] + <span class="string">"&gt;"</span> + content + <span class="string">"&lt;/"</span> + l[j] + <span class="string">"&gt;"</span> + s[y+c*k:]</span><br><span class="line">                k += <span class="number">1</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
-
-这个处理比较简单，偏移量能算出来，一行能匹配多个加粗、斜体。
-
-#### 5.4 加粗、斜体辅助函数
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenTemplate</span><span class="params">(s, match)</span>:</span></span><br><span class="line">    pattern = <span class="string">""</span></span><br><span class="line">    <span class="keyword">if</span> match == <span class="string">'*'</span>:</span><br><span class="line">        pattern = <span class="string">"\*([^\*]*)\*"</span></span><br><span class="line">    <span class="keyword">if</span> match == <span class="string">'**'</span>:</span><br><span class="line">        pattern = <span class="string">"\*\*([^\*\*]*)\*\*"</span></span><br><span class="line">    <span class="keyword">return</span> pattern</span><br></pre></td></tr></table></figure>
-
-判断具体是加粗还是斜体，返回正则匹配式
-
-#### 5.5 两个处理函数和一个简单的判断函数
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 判断 lst 是否全由字符 sym 构成　</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_same</span><span class="params">(lst, sym)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> lst <span class="keyword">or</span> sym * len(lst) == lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理标题</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handleTitle</span><span class="params">(s, n)</span>:</span></span><br><span class="line">    temp = <span class="string">"&lt;h"</span> + repr(n) + <span class="string">"&gt;"</span> + s[n:] + <span class="string">"&lt;/h"</span> + repr(n) + <span class="string">"&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理无序列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handleUnorderd</span><span class="params">(s)</span>:</span></span><br><span class="line">    s = <span class="string">"&lt;ul&gt;&lt;li&gt;"</span> + s[<span class="number">1</span>:]</span><br><span class="line">    s += <span class="string">"&lt;/li&gt;&lt;/ul&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
-
-## 三. 其他说明
-我将会在压缩包内放入示例文件（其实就是本文件支持的语法那一部分），以及其生成的 HTML 文件 和 PDF 文件.
-![](http://oj8wl05o7.bkt.clouddn.com/1.png)
-![](http://oj8wl05o7.bkt.clouddn.com/2.png)
-
-## 四. 自评分数
-**优秀**
-
-## 五. 评价理由以及心得体会
-这次大作业的代码框架来自实验楼的一个课程，我在半个月前就开始看这份代码，虽然曾经使用过 markdown (大一上时搭建过Hexo，一个轻量的静态博客，文章用 markdown来写，顺便贴上自己的博客地址 [cinvx.com](civinx.com))，知道其常用的一些语法，然而并看不懂这个解释器，主要是没有学习过正则表达式以及HTML语言，所以也无法理解代码的大思路。
-
-为此我参加了计蒜课的python程序设计基础，并学习了其中的正则表达式专题，对我快速理解正则表达式和 re 库的使用提供了很大的帮助。以及普及了python语言的一些规范，包括命名规范和编程风格。
-
-![](http://oj8wl05o7.bkt.clouddn.com/3.png)
-
-在学习的正则表达式后，整个代码就比较容易看懂了，大思路就是按行处理文本，通过正则匹配 markdown 语法，添加对应的 HTML 标签，写到目标文件里。至于如何在命令行运行和生成 PDF 文件，这些都可以通过库来帮助我实现，比如 wkhtmltopdf 能将 HTML 转成 PDF，以及 docopt 能方便地实现命令行程序。这个理解的过程大概花了我断断续续的一周和元旦完整的一天，然后花了一天时间对于需要的功能重写该代码。
-
-整个大作业过程其实Python的语法是最简单的部分，难点是正则表达式的使用和学习一些 HTML 标签，以及库的使用。得意于这些难点，我也入门了这些难点，这些每一个第一步都是进步。这次 python 公选课给我的帮助还是非常大的。
-
-根据我学习这门课程所花的精力和时间，以及学习的成果，我给自己的评价为 **优秀**。
-
-
-
-
-</sourcefile>]]></content>
+<p>生成一个 test2.pdf 文件和一个 translation_result.html 文件</p>
+<h2 id="二、代码分析">二、代码分析</h2><h3 id="1-_docopt文档">1. docopt文档</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">""</span>"md2pdf</span><br><span class="line"></span><br><span class="line">translates markdwon <span class="keyword">file</span> into html or pdf, and support picture insertion.</span><br><span class="line"></span><br><span class="line">Usage: </span><br><span class="line">    md2pdf &lt;sourcefile&gt; &lt;outputfile&gt; [options]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">    -<span class="keyword">h</span> --<span class="keyword">help</span>     show <span class="keyword">help</span> document.</span><br><span class="line">    -v --<span class="keyword">version</span>  show <span class="keyword">version</span> information.</span><br><span class="line">    -o --output   <span class="keyword">translate</span> sourcefile into html <span class="keyword">file</span>.</span><br><span class="line">    -p --<span class="keyword">print</span>    <span class="keyword">translate</span> sourcefile into pdf <span class="keyword">file</span> and html <span class="keyword">file</span> respectively.</span><br><span class="line">    -P --<span class="keyword">Print</span>    <span class="keyword">translate</span> sourcefile into pdf <span class="keyword">file</span> only.</span><br><span class="line"><span class="string">""</span>"</span><br></pre></td></tr></table></figure>
+<p>这部分在接下来会作为 <code>__doc__</code> 来初始化 docopt </p>
+<p>docopt 会自动对其做命令行解释，这个过程不用我们来操心，十分方便</p>
+<h3 id="2-_需要导入的库和全局状态">2. 需要导入的库和全局状态</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os,re</span><br><span class="line"><span class="keyword">import</span> sys,getopt</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> docopt <span class="keyword">import</span> docopt</span><br><span class="line"></span><br><span class="line">__version__ = <span class="string">'1.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 有序序列状态</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ORDERLIST</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    Init = <span class="number">1</span></span><br><span class="line">    List = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 块状态</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BLOCK</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    Init = <span class="number">1</span></span><br><span class="line">    Block = <span class="number">2</span></span><br><span class="line">    CodeBlock = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义全局状态，并初始化状态</span></span><br><span class="line"><span class="comment"># table_state = TABLE.Init</span></span><br><span class="line">orderList_state = ORDERLIST.Init</span><br><span class="line">block_state = BLOCK.Init</span><br><span class="line">is_code = <span class="keyword">False</span></span><br><span class="line">is_normal = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>这些全局变量帮程序来表示当前文本的状态，比如是否为代码块的开头、中间、结尾，以此来加入合适的 HTML 标签</p>
+<h3 id="3-_主函数">3. 主函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    dest_file = <span class="string">"translation_result.html"</span></span><br><span class="line">    dest_pdf_file = <span class="string">"translation_result.pdf"</span></span><br><span class="line"></span><br><span class="line">    only_pdf = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    args = docopt(__doc__, version=__version__)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#只要HTML，如果参数是-P，即HTML和PDF都要生成，HTML采用默认文件名</span></span><br><span class="line">    dest_file = args[<span class="string">'&lt;outputfile&gt;'</span>] <span class="keyword">if</span> args[<span class="string">'--output'</span>] <span class="keyword">else</span> dest_file</span><br><span class="line"></span><br><span class="line">    <span class="comment">#需要生成PDF</span></span><br><span class="line">    dest_pdf_file = args[<span class="string">'&lt;outputfile&gt;'</span>] <span class="keyword">if</span> args[<span class="string">'--print'</span>] <span class="keyword">or</span> args[<span class="string">'--Print'</span>] <span class="keyword">else</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    run(args[<span class="string">'&lt;sourcefile&gt;'</span>], dest_file, dest_pdf_file, args[<span class="string">'--Print'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>其中args是docopt返回的一个字典，其key和value是根据我们在开头写的注释来生成的，如<code>args[‘\&lt;sourcefile&gt;’]</code>就会返回用户在命令行输入的原文件名。</p>
+<h3 id="4-_执行函数">4. 执行函数</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">def run(source_file, dest_file, dest_pdf_file, only_pdf):</span><br><span class="line">    # 获取文件名</span><br><span class="line">    file_name = source_file</span><br><span class="line">    # 转换后的 HTML 文件名</span><br><span class="line">    dest_name = dest_file</span><br><span class="line">    # 转换后的 PDF 文件名</span><br><span class="line">    dest_pdf_name = dest_pdf_file</span><br><span class="line"></span><br><span class="line">    # 获取文件后缀</span><br><span class="line">    _, suffix = os.path.splitext(file_name)</span><br><span class="line">    if suffix not in [".md",".markdown",".mdown","mkd"]:</span><br><span class="line">        print('Error: the file should be in markdown format')</span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    if only_pdf:</span><br><span class="line">        dest_name = ".~temp~.html"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    f = open(file_name, "r")</span><br><span class="line">    f_r = open(dest_name, "w")</span><br><span class="line"></span><br><span class="line">    # 往文件中填写 HTML 的一些属性</span><br><span class="line">    f_r.write("""<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"><span class="tag">div</span> <span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;<span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Times New Roman"</span>,Georgia,Serif</span></span></span>&#125;\</span><br><span class="line">            <span class="id">#wrapper</span> <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">100%</span></span></span>; <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;&#125;</span><span class="id">#left</span> <span class="rules">&#123; <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>; \</span><br><span class="line">            <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10%</span></span></span>;  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;  &#125;</span><span class="id">#second</span> <span class="rules">&#123;   <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;   <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">80%</span></span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;   \</span><br><span class="line">            &#125;</span><span class="id">#right</span> <span class="rules">&#123;<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10%</span></span></span>;  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>; \</span><br><span class="line">            &#125;</span></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"wrapper"</span>&gt;</span> <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"left"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"second"</span>&gt;</span>""")</span><br><span class="line">    f_r.write("""<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>/&gt;</span>""")</span><br><span class="line">    </span><br><span class="line">    # 逐行解析 markdwon 文件</span><br><span class="line">    for eachline in f:</span><br><span class="line">        result = parse(eachline)</span><br><span class="line">        if result != "":</span><br><span class="line">            f_r.write(result)</span><br><span class="line"></span><br><span class="line">    f_r.write("""<span class="tag">&lt;<span class="title">br</span> /&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"right"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>""")</span><br><span class="line"></span><br><span class="line">    f_r.close()</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">    # 调用扩展 wkhtmltopdf 将 HTML 文件转换成 PDF</span><br><span class="line">    if dest_pdf_name != "" or only_pdf:</span><br><span class="line">        call(["wkhtmltopdf", dest_name, dest_pdf_name])</span><br><span class="line">    # 如果有必要，删除中间过程生成的 HTML 文件</span><br><span class="line">    if only_pdf:</span><br><span class="line">        call(["rm", dest_name])</span><br></pre></td></tr></table></figure>
+<h3 id="5-_转换函数">5. 转换函数</h3><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">def parse(input):</span><br><span class="line">    global block_state, is_normal</span><br><span class="line">    is_normal = <span class="type">True</span></span><br><span class="line">    <span class="literal">result</span> = input</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检测当前 input 解析状态</span></span><br><span class="line">    <span class="literal">result</span> = test_state(input)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#如果是代码块，那再test_state中已经处理完了，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> block_state == <span class="type">BLOCK</span>.<span class="type">Block</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分析标题标记 </span></span><br><span class="line">    title_rank = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="type">range</span>(<span class="number">6</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> input[:i] == '<span class="comment">#'*i:</span></span><br><span class="line">            title_rank = i</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> title_rank != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 处理标题，转化为相应的 HTML 文本</span></span><br><span class="line">        <span class="literal">result</span> = handleTitle(input, title_rank)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分析分割线标记 --</span></span><br><span class="line">    <span class="keyword">if</span> len(input) &gt; <span class="number">2</span> <span class="keyword">and</span> all_same(input[:-<span class="number">1</span>], '-') <span class="keyword">and</span> input[-<span class="number">1</span>] == '\n':</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;hr&gt;"</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析无序列表</span></span><br><span class="line">    unorderd = ['+', '-']</span><br><span class="line">    <span class="keyword">if</span> <span class="literal">result</span> != <span class="string">""</span> <span class="keyword">and</span> <span class="literal">result</span>[<span class="number">0</span>] <span class="keyword">in</span> unorderd :</span><br><span class="line">        <span class="literal">result</span> = handleUnorderd(<span class="literal">result</span>)</span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line"></span><br><span class="line">    f = input[<span class="number">0</span>]</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    sys_q = <span class="type">False</span></span><br><span class="line">    <span class="keyword">while</span> f == '&gt;':</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        f = input[count]</span><br><span class="line">        sys_q = <span class="type">True</span></span><br><span class="line">    <span class="comment">#&lt;b&gt;是粗体</span></span><br><span class="line">    <span class="keyword">if</span> sys_q:</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;blockquote style=\"color:#8fbc8f\"&gt; "</span>*count + <span class="string">"&lt;b&gt;"</span> + input[count:] + <span class="string">"&lt;/b&gt;"</span> + <span class="string">"&lt;/blockquote&gt;"</span>*count</span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 处理特殊标记，比如 **, *</span></span><br><span class="line">    <span class="literal">result</span> = tokenHandler(<span class="literal">result</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析链接</span></span><br><span class="line">    <span class="literal">result</span> = link_image(<span class="literal">result</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#空行换行</span></span><br><span class="line">    pa = re.compile(r'^(\s)*$')</span><br><span class="line">    a = pa.match(input)</span><br><span class="line">    <span class="keyword">if</span> input[-<span class="number">1</span>] == <span class="string">"\n"</span> <span class="keyword">and</span> is_normal == <span class="type">True</span> <span class="keyword">and</span> <span class="keyword">not</span> a :</span><br><span class="line">        <span class="literal">result</span>+=<span class="string">"&lt;br /&gt;"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span></span><br></pre></td></tr></table></figure>
+<p>通俗易懂的说，这个函数输入一行文本，通过 python 中的 re 库进行正则匹配 markdown语法，然后在文本中添加对应的 HTML 标签，然后返回处理好的行</p>
+<p>下面将列出转换函数的辅助函数。</p>
+<h4 id="5-1_处理文本块">5.1 处理文本块</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">def test_state(input):</span><br><span class="line">    global orderList_state, block_state, is_code</span><br><span class="line">    <span class="type">Code_List</span> = [<span class="string">"python\n"</span>, <span class="string">"c++\n"</span>, <span class="string">"c\n"</span>]</span><br><span class="line"></span><br><span class="line">    <span class="literal">result</span> = input</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构建正则表达式规则</span></span><br><span class="line">    <span class="comment"># 匹配块标识</span></span><br><span class="line">    pattern = re.compile(r'```(\s)*\n')</span><br><span class="line">    a = pattern.match(input)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 普通块的开始</span></span><br><span class="line">    <span class="keyword">if</span> a <span class="keyword">and</span> block_state == <span class="type">BLOCK</span>.<span class="type">Init</span>:</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;blockquote&gt;"</span></span><br><span class="line">        block_state = <span class="type">BLOCK</span>.<span class="type">Block</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment"># 特殊代码块</span></span><br><span class="line">    <span class="keyword">elif</span> len(input) &gt; <span class="number">4</span> <span class="keyword">and</span> input[<span class="number">0</span>:<span class="number">3</span>] == '```' <span class="keyword">and</span> (input[<span class="number">3</span>:<span class="number">9</span>] == <span class="string">"python"</span> <span class="keyword">or</span> input[<span class="number">3</span>:<span class="number">6</span>] == <span class="string">"c++"</span> <span class="keyword">or</span> input[<span class="number">3</span>:<span class="number">4</span>]== <span class="string">"c"</span>) <span class="keyword">and</span> block_state == <span class="type">BLOCK</span>.<span class="type">Init</span>:</span><br><span class="line">        block_state = <span class="type">BLOCK</span>.<span class="type">Block</span></span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;code&gt;&lt;br /&gt;"</span></span><br><span class="line">        is_code = <span class="type">True</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment"># 块结束</span></span><br><span class="line">    <span class="keyword">elif</span> block_state == <span class="type">BLOCK</span>.<span class="type">Block</span> <span class="keyword">and</span> input == '```\n':</span><br><span class="line">        <span class="keyword">if</span> is_code:</span><br><span class="line">            <span class="literal">result</span> = <span class="string">"&lt;/code&gt;"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="literal">result</span> = <span class="string">"&lt;/blockquote&gt;"</span></span><br><span class="line">        block_state = <span class="type">BLOCK</span>.<span class="type">Init</span></span><br><span class="line">        is_code = <span class="type">False</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="keyword">elif</span> block_state == <span class="type">BLOCK</span>.<span class="type">Block</span>:</span><br><span class="line">        pattern = re.compile(r'[\n\r\v\f\ ]')</span><br><span class="line">        <span class="literal">result</span> = pattern.sub(<span class="string">"&amp;nbsp"</span>, <span class="literal">result</span>)</span><br><span class="line">        pattern = re.compile(r'\t')</span><br><span class="line">        <span class="literal">result</span> = pattern.sub(<span class="string">"&amp;nbsp"</span> * <span class="number">4</span>, <span class="literal">result</span>)</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;span&gt;"</span> + <span class="literal">result</span> + <span class="string">"&lt;/span&gt;&lt;br /&gt;"</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析有序序列</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#列表开头</span></span><br><span class="line">    <span class="keyword">if</span> len(input) &gt; <span class="number">2</span> <span class="keyword">and</span> input[<span class="number">0</span>].isdigit() <span class="keyword">and</span> input[<span class="number">1</span>] == '.' <span class="keyword">and</span> orderList_state == <span class="type">ORDERLIST</span>.<span class="type">Init</span>:</span><br><span class="line">        orderList_state = <span class="type">ORDERLIST</span>.<span class="type">List</span></span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;ol&gt;&lt;li&gt;"</span> + input[<span class="number">2</span>:] + <span class="string">"&lt;/li&gt;"</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment">#列表中间</span></span><br><span class="line">    <span class="keyword">elif</span> len(input) &gt; <span class="number">2</span> <span class="keyword">and</span>  input[<span class="number">0</span>].isdigit() <span class="keyword">and</span> input[<span class="number">1</span>] == '.' <span class="keyword">and</span> orderList_state == <span class="type">ORDERLIST</span>.<span class="type">List</span>:</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;li&gt;"</span> + input[<span class="number">2</span>:] + <span class="string">"&lt;/li&gt;"</span></span><br><span class="line">        is_normal = <span class="type">False</span></span><br><span class="line">    <span class="comment">#列表结束</span></span><br><span class="line">    <span class="keyword">elif</span> orderList_state == <span class="type">ORDERLIST</span>.<span class="type">List</span> <span class="keyword">and</span> (len(input) &lt;= <span class="number">2</span> <span class="keyword">or</span> input[<span class="number">0</span>].isdigit() == <span class="type">False</span> <span class="keyword">or</span> input[<span class="number">1</span>] != '.'):</span><br><span class="line">        <span class="literal">result</span> = <span class="string">"&lt;/ol&gt;"</span> + input</span><br><span class="line">        orderList_state = <span class="type">ORDERLIST</span>.<span class="type">Init</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span></span><br></pre></td></tr></table></figure>
+<p>这个函数能处理代码块和特殊代码块(三个点后加语言)，和有序列表和无序列表</p>
+<p>然而在特殊代码块周围加上\<code>\</code>后好像显示并没有什么区别，所以没有算在支持的语法中。</p>
+<h4 id="5-2_链接处理函数">5.2 链接处理函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">link_image</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="comment"># 超链接</span></span><br><span class="line">    <span class="comment"># pattern = re.compile(r'\\\[(.*)\]\((.*)\)')</span></span><br><span class="line">    pattern = re.compile(<span class="string">r'\[(.*)\]\((.*)\)'</span>)</span><br><span class="line">    match = pattern.finditer(s)</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> match:</span><br><span class="line">        <span class="keyword">if</span> a:</span><br><span class="line">            text, url = a.group(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">            <span class="comment">#左闭右开的区间</span></span><br><span class="line">            x, y = a.span()</span><br><span class="line">            s = s[:x] + <span class="string">"&lt;a href="</span> + url + <span class="string">" target=\"_blank\"&gt;"</span> + text + <span class="string">"&lt;/a&gt;"</span> + s[y:]</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+<p>为了处理方便（偏移量没处理好），这个函数只能匹配一行中的第一个链接</p>
+<h4 id="5-3_处理加粗、斜体标识">5.3 处理加粗、斜体标识</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenHandler</span><span class="params">(s)</span>:</span></span><br><span class="line">    l = [<span class="string">'b'</span>, <span class="string">'i'</span>]</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">'**'</span>, <span class="string">'*'</span>]:</span><br><span class="line">        pattern = re.compile(tokenTemplate(s,i))</span><br><span class="line">        match = pattern.finditer(s)</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> match:</span><br><span class="line">            <span class="keyword">if</span> a:</span><br><span class="line">                content = a.group(<span class="number">1</span>)</span><br><span class="line">                x,y = a.span()</span><br><span class="line">                <span class="comment"># &lt;b&gt;&lt;/b&gt;为7个字符 当*时，添加一次字符穿边长(7-2=5)个单位，当**时，增加(7-4=3）个单位</span></span><br><span class="line">                c = <span class="number">3</span></span><br><span class="line">                <span class="keyword">if</span> i == <span class="string">'*'</span>:</span><br><span class="line">                    c = <span class="number">5</span></span><br><span class="line">                s = s[:x+c*k] + <span class="string">"&lt;"</span> + l[j] + <span class="string">"&gt;"</span> + content + <span class="string">"&lt;/"</span> + l[j] + <span class="string">"&gt;"</span> + s[y+c*k:]</span><br><span class="line">                k += <span class="number">1</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+<p>这个处理比较简单，偏移量能算出来，一行能匹配多个加粗、斜体。</p>
+<h4 id="5-4_加粗、斜体辅助函数">5.4 加粗、斜体辅助函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenTemplate</span><span class="params">(s, match)</span>:</span></span><br><span class="line">    pattern = <span class="string">""</span></span><br><span class="line">    <span class="keyword">if</span> match == <span class="string">'*'</span>:</span><br><span class="line">        pattern = <span class="string">"\*([^\*]*)\*"</span></span><br><span class="line">    <span class="keyword">if</span> match == <span class="string">'**'</span>:</span><br><span class="line">        pattern = <span class="string">"\*\*([^\*\*]*)\*\*"</span></span><br><span class="line">    <span class="keyword">return</span> pattern</span><br></pre></td></tr></table></figure>
+<p>判断具体是加粗还是斜体，返回正则匹配式</p>
+<h4 id="5-5_两个处理函数和一个简单的判断函数">5.5 两个处理函数和一个简单的判断函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 判断 lst 是否全由字符 sym 构成　</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_same</span><span class="params">(lst, sym)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> lst <span class="keyword">or</span> sym * len(lst) == lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理标题</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handleTitle</span><span class="params">(s, n)</span>:</span></span><br><span class="line">    temp = <span class="string">"&lt;h"</span> + repr(n) + <span class="string">"&gt;"</span> + s[n:] + <span class="string">"&lt;/h"</span> + repr(n) + <span class="string">"&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理无序列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handleUnorderd</span><span class="params">(s)</span>:</span></span><br><span class="line">    s = <span class="string">"&lt;ul&gt;&lt;li&gt;"</span> + s[<span class="number">1</span>:]</span><br><span class="line">    s += <span class="string">"&lt;/li&gt;&lt;/ul&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+<h2 id="三-_其他说明">三. 其他说明</h2><p>我将会在压缩包内放入示例文件（其实就是本文件支持的语法那一部分），以及其生成的 HTML 文件 和 PDF 文件.<br><img src="http://oj8wl05o7.bkt.clouddn.com/1.png" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/2.png" alt=""></p>
+<h2 id="四-_自评分数">四. 自评分数</h2><p><strong>优秀</strong></p>
+<h2 id="五-_评价理由以及心得体会">五. 评价理由以及心得体会</h2><p>这次大作业的代码框架来自实验楼的一个课程，我在半个月前就开始看这份代码，虽然曾经使用过 markdown (大一上时搭建过Hexo，一个轻量的静态博客，文章用 markdown来写，顺便贴上自己的博客地址 <a href="civinx.com">cinvx.com</a>)，知道其常用的一些语法，然而并看不懂这个解释器，主要是没有学习过正则表达式以及HTML语言，所以也无法理解代码的大思路。</p>
+<p>为此我参加了计蒜课的python程序设计基础，并学习了其中的正则表达式专题，对我快速理解正则表达式和 re 库的使用提供了很大的帮助。以及普及了python语言的一些规范，包括命名规范和编程风格。</p>
+<p><img src="http://oj8wl05o7.bkt.clouddn.com/3.png" alt=""></p>
+<p>在学习的正则表达式后，整个代码就比较容易看懂了，大思路就是按行处理文本，通过正则匹配 markdown 语法，添加对应的 HTML 标签，写到目标文件里。至于如何在命令行运行和生成 PDF 文件，这些都可以通过库来帮助我实现，比如 wkhtmltopdf 能将 HTML 转成 PDF，以及 docopt 能方便地实现命令行程序。这个理解的过程大概花了我断断续续的一周和元旦完整的一天，然后花了一天时间对于需要的功能重写该代码。</p>
+<p>整个大作业过程其实Python的语法是最简单的部分，难点是正则表达式的使用和学习一些 HTML 标签，以及库的使用。得意于这些难点，我也入门了这些难点，这些每一个第一步都是进步。这次 python 公选课给我的帮助还是非常大的。</p>
+<p>根据我学习这门课程所花的精力和时间，以及学习的成果，我给自己的评价为 <strong>优秀</strong>。</p>
+]]></content>
     <summary type="html">
-    <![CDATA[#### Python3实现简易的markdown解释器]]>
+    <![CDATA[<h4 id="Python3实现简易的markdown解释器">Python3实现简易的markdown解释器</h4>]]>
     
     </summary>
     
@@ -472,75 +245,61 @@ docopt 会自动对其做命令行解释，这个过程不用我们来操心，�
     <id>http://yoursite.com/2016/09/21/ACM2016/</id>
     <published>2016-09-21T15:59:59.000Z</published>
     <updated>2016-09-22T01:21:22.000Z</updated>
-    <content type="html"><![CDATA[#### 小鲜肉们看这里！
-
-<a id="more"></a>
-***
-各位2016级新童鞋：  
-
-* 你是否想在大学发现一个更精彩的新世界？
-* 你是否对自己的天赋充满信心？（尤其是逻辑能力或数学思维）
-* 你是否想体验最极致的编程乐趣？
-* 你是否想找一群志(chou)同(wei)道(xiang)合(tou)的朋友一起奋斗？  
+    <content type="html"><![CDATA[<h4 id="小鲜肉们看这里！">小鲜肉们看这里！</h4><a id="more"></a>
+<hr>
+<p>各位2016级新童鞋：  </p>
+<ul>
+<li>你是否想在大学发现一个更精彩的新世界？</li>
+<li>你是否对自己的天赋充满信心？（尤其是逻辑能力或数学思维）</li>
+<li>你是否想体验最极致的编程乐趣？</li>
+<li><p>你是否想找一群志(chou)同(wei)道(xiang)合(tou)的朋友一起奋斗？  </p>
 <p>  
 
- **那么，来加入城院的ACM实验室吧!**
+</p><p><strong>那么，来加入城院的ACM实验室吧!</strong></p>
+</li>
+</ul>
+<p></p><p>（招收不限于计算分院，如果你身边有这样的朋友，也请你传递这个信息～）</p><p></p>
+<hr>
+<h4 id="我们对新成员的要求：">我们对新成员的要求：</h4><ul>
+<li><p>人品过硬，不弄虚作假，要尊重老师 </p><p> </p></li>
+<li><p>性格要好，和其他成员能融洽相处。</p><p>  </p></li>
+<li><p>愿意无条件服从集训队安排的训练、组队、参赛以及其他统一的活动。</p><p>  </p></li>
+<li><p>意志坚定，切忌一日曝、十日寒。愿意长期付出时间，而不是三心二意。</p><p></p></li>
+</ul>
+<hr>
+<h4 id="注意事项：">注意事项：</h4><ul>
+<li><p></p><p>如果你对ACM还不是很了解，请戳这个链接<a href="http://fateud.com/acm/" target="_blank" rel="external">城院ACM-ICPC竞赛简章</a>。  </p><p></p>
+</li>
+<li><p></p><p>对了，我们会在十二月中旬左右举办面向16级新生的程序设计竞赛（新生选拔赛）。</p>
+<p>届时，我们会选择排名较前的部分同学，优先入驻实验室熟悉环境。  </p>
+<p>为此，我们精心准备了一套对编程零基础的同学较为友好的题库，<br><a href="http://acm.zucc.edu.cn/JudgeOnline/diycontest.php?cid=1157" target="_blank" rel="external">http://acm.zucc.edu.cn/JudgeOnline/diycontest.php?cid=1157</a>  </p>
+<p>欢迎同学们来练习。  </p>
+</li>
+<li><p></p><p>该训练题集也将纳入我们选拔新同学的参考范围，也就是说，  </p>
+<p>即使你在新生赛中发挥不是特别出色，我们也会根据你训练题的出题数放低要求。</p>
+<p>(请不要抄袭代码)</p><p></p>
+</li>
+<li><p></p><p>acm.zucc.edu.cn是我们本校的online judge，提供在线判题、比赛的功能。 </p>
+<p>注册时请以学号为账号，姓名为昵称。</p><p></p>
+</li>
+</ul>
+<hr>
+<h4 id="联系方式：">联系方式：</h4><ul>
+<li><p>QQ群号：578574227（2016 ACM/ICPC 新生群）</p><p></p></li>
+<li><p>邮箱：admin@fateud.com（赵炎）、civin1128@gmail.com（陈哲凡）</p><p></p></li>
+</ul>
+<hr>
+<h4 id="其他：">其他：</h4><ul>
+<li><p>如果在刷题的过程中遇到困难，你可以在Web Board中发帖、或在ACM新生群求助，我们会及时回复。</p><p></p></li>
+</ul>
+<hr>
+<p>  
 
 
-</p><p>（招收不限于计算分院，如果你身边有这样的朋友，也请你传递这个信息～）</p><p>
-***  
- 
-
-
-
-#### 我们对新成员的要求：  
-
-* </p><p>人品过硬，不弄虚作假，要尊重老师 </p><p> 
-* </p><p>性格要好，和其他成员能融洽相处。</p><p>  
-* </p><p>愿意无条件服从集训队安排的训练、组队、参赛以及其他统一的活动。</p><p>  
-* </p><p>意志坚定，切忌一日曝、十日寒。愿意长期付出时间，而不是三心二意。</p><p>
-***
-
-#### 注意事项：
-
-* </p><p>如果你对ACM还不是很了解，请戳这个链接[城院ACM-ICPC竞赛简章](http://fateud.com/acm/)。  </p><p>
-
-* </p><p>对了，我们会在十二月中旬左右举办面向16级新生的程序设计竞赛（新生选拔赛）。
-  
-  届时，我们会选择排名较前的部分同学，优先入驻实验室熟悉环境。  
-
-  为此，我们精心准备了一套对编程零基础的同学较为友好的题库，
-  [http://acm.zucc.edu.cn/JudgeOnline/diycontest.php?cid=1157](http://acm.zucc.edu.cn/JudgeOnline/diycontest.php?cid=1157)  
-
-  欢迎同学们来练习。  
-  
-* </p><p>该训练题集也将纳入我们选拔新同学的参考范围，也就是说，  
-  
-  即使你在新生赛中发挥不是特别出色，我们也会根据你训练题的出题数放低要求。
-  
-  (请不要抄袭代码)</p><p>
-
-* </p><p>acm.zucc.edu.cn是我们本校的online judge，提供在线判题、比赛的功能。 
-  
-  注册时请以学号为账号，姓名为昵称。</p><p>
-***
-#### 联系方式：
-* </p><p>QQ群号：578574227（2016 ACM/ICPC 新生群）</p><p>
-* </p><p>邮箱：admin@fateud.com（赵炎）、civin1128@gmail.com（陈哲凡）</p><p>
-
-***
-#### 其他：
-
-* </p><p>如果在刷题的过程中遇到困难，你可以在Web Board中发帖、或在ACM新生群求助，我们会及时回复。</p><p>
-
-***
-</p><p>  
-  
-  
 </p><h6 align="right">浙江大学城市学院 - ACM实验室</h6>
 ]]></content>
     <summary type="html">
-    <![CDATA[#### 小鲜肉们看这里！]]>
+    <![CDATA[<h4 id="小鲜肉们看这里！">小鲜肉们看这里！</h4>]]>
     
     </summary>
     
@@ -552,49 +311,55 @@ docopt 会自动对其做命令行解释，这个过程不用我们来操心，�
     <id>http://yoursite.com/2015/11/06/杂碎/</id>
     <published>2015-11-06T07:11:51.000Z</published>
     <updated>2016-09-21T15:36:05.000Z</updated>
-    <content type="html"><![CDATA[<p>这里是我每日的杂碎。
-<a id="more"></a>
-***
-* </p><p>差不多一个月了，经常睡到九十点才起。
-  </p><p>再晚起是傻逼。
-  </p><p>-2015.11.6
-***
-* </p><p>道不同，不相谋、不足与争。
-  </p><p>-2015.11.7
-***
-* </p><p>*WA的意思是，在W之后一定会A的。*—今日最暖
-* </p><p>大头感冒了，好想快点飞到南昌去。
-  </p><p>-2015.11.8
-***
-* </p><p>我看着遍地的红色快递，好像看着一个时代。
-* </p><p>期中考，最快的人十五分钟，我花了三十五钟，大崩。
-  </p><p>-2015.11.13
-***
-* </p><p>底子太差，恶补数论。
-  </p><p>-2015.11.15
-***
-* *</p><p>Euler函数表达通式：euler(x)=x(1-1/p1)(1-1/p2)(1-1/p3)(1-1/p4)…(1-1/pn),其中p1,p2……pn为x的所有素因数，x是不为0的整数。euler(1)=1（唯一和1互质的数就是1本身）。*
-  </p><p>-2015.11.19
-***
-* *</p><p>*n 个不同元素的错排种数 
-f(n) = (n-1)[f(n-2)+f(n-1)] (n>2)。
-  </p><p>-2015.12.19
-***
-* </p><p>不被虐怎能变强？痛定思痛。
-  </p><p>I will be a better me!
-  </p><p>-2015.12.22
-***
-* </p><p>文明5这个东西，赛吸毒啊！
-  </p><p>-2016.1.31
-***
-* </p><p>事实上，我们所在的这个世界，遍地都是唆麻，吸食它们不仅不是不道德的，更是自然的。有谁不乐意堕入到幸福乡去享乐几分钟呢？不安乐至死，才是要努力的事。
-  </p><p>-2016.4.21
-  ***
-* </p><p>这次省赛折戟沉沙，可说是砰得一下打醒了我的脑袋。且批评自己几点——过水题算不了什么本事，遇到难啃的题，巴望着队友做出来，连本事都不算！从新生赛、校赛、浙大赛，前二者不过是手速快A水题取胜，后者却更是躺赢，丝毫无贡献可言。好，bb完了，学习去了。
-  </p><p>-2016.4.24
-***</p>]]></content>
+    <content type="html"><![CDATA[<p></p><p>这里是我每日的杂碎。<br><a id="more"></a></p>
+<hr>
+<ul>
+<li><p>差不多一个月了，经常睡到九十点才起。<br></p><p>再晚起是傻逼。<br></p><p>-2015.11.6</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>道不同，不相谋、不足与争。<br></p><p>-2015.11.7</p></li>
+</ul>
+<hr>
+<ul>
+<li><p><em>WA的意思是，在W之后一定会A的。</em>—今日最暖</p></li>
+<li><p>大头感冒了，好想快点飞到南昌去。<br></p><p>-2015.11.8</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>我看着遍地的红色快递，好像看着一个时代。</p></li>
+<li><p>期中考，最快的人十五分钟，我花了三十五钟，大崩。<br></p><p>-2015.11.13</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>底子太差，恶补数论。<br></p><p>-2015.11.15</p></li>
+</ul>
+<hr>
+<ul>
+<li><em><p>Euler函数表达通式：euler(x)=x(1-1/p1)(1-1/p2)(1-1/p3)(1-1/p4)…(1-1/pn),其中p1,p2……pn为x的所有素因数，x是不为0的整数。euler(1)=1（唯一和1互质的数就是1本身）。</p></em><br><p>-2015.11.19</p></li>
+</ul>
+<hr>
+<ul>
+<li><em><p></p></em>n 个不同元素的错排种数<br>f(n) = (n-1)[f(n-2)+f(n-1)] (n&gt;2)。<br><p>-2015.12.19</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>不被虐怎能变强？痛定思痛。<br></p><p>I will be a better me!<br></p><p>-2015.12.22</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>文明5这个东西，赛吸毒啊！<br></p><p>-2016.1.31</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>事实上，我们所在的这个世界，遍地都是唆麻，吸食它们不仅不是不道德的，更是自然的。有谁不乐意堕入到幸福乡去享乐几分钟呢？不安乐至死，才是要努力的事。<br></p><p>-2016.4.21<hr>
+</p></li>
+<li><p>这次省赛折戟沉沙，可说是砰得一下打醒了我的脑袋。且批评自己几点——过水题算不了什么本事，遇到难啃的题，巴望着队友做出来，连本事都不算！从新生赛、校赛、浙大赛，前二者不过是手速快A水题取胜，后者却更是躺赢，丝毫无贡献可言。好，bb完了，学习去了。<br></p><p>-2016.4.24</p></li>
+</ul>
+<hr>
+]]></content>
     <summary type="html">
-    <![CDATA[<p>这里是我每日的杂碎。]]>
+    <![CDATA[<p><p>这里是我每日的杂碎。<br>]]>
     
     </summary>
     

@@ -12,33 +12,37 @@
 
     
     <meta name="description" content="&amp;lt;!----&amp;gt;
-## 求解Ax=b：可解性和解的结构
-设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
+求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
 
-* r = m = n（二维平面上两条不平行的直线求交点）（1个解）    
-向量所占的维数等于向量的个数又等于母空间的维数。  
-所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有">
+r = m = n（二维平面上两条不平行的直线求交点）（1个解）向量所占的维数等于向量的个数又等于母空间的维数。所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。
+
+
+r = m &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性代数笔记">
 <meta property="og:url" content="http://yoursite.com/2018/02/09/linear-algebra/index.html">
 <meta property="og:site_name" content="Civinx">
 <meta property="og:description" content="&amp;lt;!----&amp;gt;
-## 求解Ax=b：可解性和解的结构
-设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
+求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
 
-* r = m = n（二维平面上两条不平行的直线求交点）（1个解）    
-向量所占的维数等于向量的个数又等于母空间的维数。  
-所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有">
+r = m = n（二维平面上两条不平行的直线求交点）（1个解）向量所占的维数等于向量的个数又等于母空间的维数。所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。
+
+
+r = m &amp;">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg">
+<meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg">
 <meta property="og:updated_time" content="2018-02-27T16:12:01.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="&amp;lt;!----&amp;gt;
-## 求解Ax=b：可解性和解的结构
-设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
+求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
 
-* r = m = n（二维平面上两条不平行的直线求交点）（1个解）    
-向量所占的维数等于向量的个数又等于母空间的维数。  
-所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有">
+r = m = n（二维平面上两条不平行的直线求交点）（1个解）向量所占的维数等于向量的个数又等于母空间的维数。所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。
+
+
+r = m &amp;">
 <link rel="publisher" href="105051545141309425310">
 
     
@@ -115,146 +119,67 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解Ax=b：可解性和解的结构"><span class="toc-number">1.</span> <span class="toc-text">求解Ax=b：可解性和解的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四个基本子空间"><span class="toc-number">2.</span> <span class="toc-text">四个基本子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图和网络"><span class="toc-number">3.</span> <span class="toc-text">图和网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子空间投影"><span class="toc-number">4.</span> <span class="toc-text">子空间投影</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言——为什么要求投影"><span class="toc-number">4.1.</span> <span class="toc-text">前言——为什么要求投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一维投影"><span class="toc-number">4.2.</span> <span class="toc-text">一维投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高维投影"><span class="toc-number">4.3.</span> <span class="toc-text">高维投影</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正交矩阵和Gram-Schmidt正交化"><span class="toc-number">5.</span> <span class="toc-text">正交矩阵和Gram-Schmidt正交化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正交矩阵"><span class="toc-number">5.1.</span> <span class="toc-text">正交矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gram-Schmidt正交化"><span class="toc-number">5.2.</span> <span class="toc-text">Gram-Schmidt正交化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一般步骤"><span class="toc-number">5.2.1.</span> <span class="toc-text">一般步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表达式"><span class="toc-number">5.2.2.</span> <span class="toc-text">表达式</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
 		<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>-->
-## 求解Ax=b：可解性和解的结构
-设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
-
-* r = m = n（二维平面上两条不平行的直线求交点）（1个解）    
-向量所占的维数等于向量的个数又等于母空间的维数。  
-所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。
-
-
-* r = m < n（三维空间上两个不平行平面求交点）（无数解）  
-向量所占的维数等于母空间的维数，但小于向量的个数。  
-前面的条件说明一定能到母空间的任意位置，后面的条件说明有自由向量。  
-通过改变自由向量的系数，可以让其他向量的系数也改变且满足解。  
-所以有无数解。
-
-
-* r = n < m（二维平面上三条直线求交点）（无解或1解）  
-向量所占的维数等于向量的个数，但小于母空间的维数。   
-后面的条件说明向量无论如何组合，也只能到母空间的一个子空间，所以有可能无解。  
-前面的条件说明没有自由向量，如果恰好能到b的位置，那向量的组合也是唯一的。
-
-* r < n, r < m  （三维空间中，一个平面和一条直线求交点）（无解或无数解）  
-向量所占的维数小于向量的个数，且小于母空间的维数。  
-说明有自由向量 && 只能到达母空间的某一个子空间。  
-故无解或无数解。
-
---
-## 四个基本子空间
-* 矩阵A: m*n，rank = r
-* 列空间 C(A) dim = r
-* 左零空间 $N(A^T)$ dim = m - r
-* 行空间 $C(A^T)$ dim = r
-* 零空间 N(A) dim = n - r
-* 列空间和左零空间位于Rm，其维数相加等于m
-* 行空间和零空间位于Rn，其维数相加等于n
-
-### 理解
-* 列空间：由n个向量组成，每个向量是m维的，自然在Rm中。dim = rank是去掉自由变量之外的主列数量，base可以是剩下的主列。
-* 左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1*m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r
-* 行空间：由于初等行变换只是行之间的线性组合，所以各行在变化之后仍在原来的行空间上，所以可以通过将矩阵做行最简式得到一组best base，剩下的行数就是rank，也是dim。所以dim = rank = r；矩阵有m行，所以处于Rm上
-* 零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。
-* 矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。
-
-## 图和网络
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg)
-
-## 子空间投影
-### 前言——为什么要求投影
-试想有一个二维坐标系，以及三个点(1,1),(2,2),(3,2)。问是否有一根直线穿过这三个点。  
-设直线为$C+Dt=b$  
-于是得到三个方程，分别为：  
-$C+D=1$  
-$C+2D=2$  
-$C+3D=2$  
-抽象为矩阵形式为：
-$$
- \left[
- \begin{matrix}
-   1 & 1 \\
-   1 & 2 \\
-   1 & 3
-  \end{matrix}
-  \right] \tag{3}
-$$
-与
-$$
- \left[
- \begin{matrix}
-   C \\
-   D
-  \end{matrix}
-  \right] \tag{3}
-$$
-相乘。
-也就是$Ax=b$的形式，此时由于b不在A的列空间内，于是无解。于是我们希望找到一条与这三条最接近的一条直线，也就是一个近似解，更具体的，我们希望找到一个最接近A列空间的$p$，求出近似解$\hat(x)$，由此投影就在此应用。  
-
-### 一维投影
-二维空间中，一个向量投影到一个一条直线（一维子空间）上。 
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg)
-$$a^T(b-xa)=0$$
-$$a^Tax=a^Tb$$
-$$x=\frac{a^Tb}{a^Ta}$$
-$$p=ax=\frac{aa^Tb}{a^Ta}$$
-$$P=\frac{aa^T}{a^Ta}$$
-P（投影矩阵）的性质：
-* $p*p=p$
-* 是对称矩阵
-
-### 高维投影
-以一个向量投影到一个平面上（多维子空间）为例
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg)
-![](http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg)
-
-## 正交矩阵和Gram-Schmidt正交化
-### 正交矩阵
-正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影，有  
-$$p=ax=A(A^TA)^{-1}A^T$$
-如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$
-有$$p=ax=Q(Q^TQ)^{-1}Q^T$$
-由于$Q$每一列$q_i$都互相垂直，长度为1所以有
-$$ (q_i)^T*q_j=
-\begin{cases}
-1& \text{i=j}\\
-0& \text{i!=j}
-\end{cases}$$
-得到
-$$Q^TQ=I$$
-
-### Gram-Schmidt正交化
-这个方法主要来自Gram，Schmidt只提供了将向量单位化（向量除以自己的长度），所以国内广泛称其为施密特正交化，有失偏颇。  
-
-初始条件：$m*n$矩阵$A$，其各列$a_1,a_2...a_n$线性无关
-
-目标：将矩阵$A$正交化为正交矩阵$Q$
-
-#### 一般步骤
-取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）
-
-现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。  
-将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。  
-$$q_2=a_2-\frac{A^Ta_2}{A^TA}*A$$（$\frac{A^Ta_2}{A^TA}$是一个常数）
-
-继续处理$a_i$  
-想得到 $q_i$: 
-* 垂直于 $q_1,q_2...q_{i-1}$  
-* $a_1,a_2...a_i$ 与 $q_1,q_2...q_i$ 构成的列空间一致   
-将 $a_i$ 分别投影到 $q_1,q_2...q_{i-1}$ 上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$ 
-
-得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。
-
-#### 表达式
-和$A=LU$分解一样，正交化也有表达式$$A=QR$$
-$$R=Q^TA$$
-证明R是个$n*n$的上三角矩阵：
-* $Q^T$是$n*m$矩阵，$A$是$m*n$矩阵，所以R是$n*n$矩阵
-* $R_ij=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j  
+<h2 id="求解Ax=b：可解性和解的结构">求解Ax=b：可解性和解的结构</h2><p>设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩</p>
+<ul>
+<li>r = m = n（二维平面上两条不平行的直线求交点）（1个解）<br>向量所占的维数等于向量的个数又等于母空间的维数。<br>所以向量一定能到达母空间的任意位置，但该位置唯一，每个向量都不是自由的，要共同组合才能到该位置，所以向量前的系数也是唯一的，故有个1解。</li>
+</ul>
+<ul>
+<li>r = m &lt; n（三维空间上两个不平行平面求交点）（无数解）<br>向量所占的维数等于母空间的维数，但小于向量的个数。<br>前面的条件说明一定能到母空间的任意位置，后面的条件说明有自由向量。<br>通过改变自由向量的系数，可以让其他向量的系数也改变且满足解。<br>所以有无数解。</li>
+</ul>
+<ul>
+<li><p>r = n &lt; m（二维平面上三条直线求交点）（无解或1解）<br>向量所占的维数等于向量的个数，但小于母空间的维数。<br>后面的条件说明向量无论如何组合，也只能到母空间的一个子空间，所以有可能无解。<br>前面的条件说明没有自由向量，如果恰好能到b的位置，那向量的组合也是唯一的。</p>
+</li>
+<li><p>r &lt; n, r &lt; m  （三维空间中，一个平面和一条直线求交点）（无解或无数解）<br>向量所占的维数小于向量的个数，且小于母空间的维数。<br>说明有自由向量 &amp;&amp; 只能到达母空间的某一个子空间。<br>故无解或无数解。</p>
+</li>
+</ul>
+<p>–</p>
+<h2 id="四个基本子空间">四个基本子空间</h2><ul>
+<li>矩阵A: m*n，rank = r</li>
+<li>列空间 C(A) dim = r</li>
+<li>左零空间 $N(A^T)$ dim = m - r</li>
+<li>行空间 $C(A^T)$ dim = r</li>
+<li>零空间 N(A) dim = n - r</li>
+<li>列空间和左零空间位于Rm，其维数相加等于m</li>
+<li>行空间和零空间位于Rn，其维数相加等于n</li>
+</ul>
+<h3 id="理解">理解</h3><ul>
+<li>列空间：由n个向量组成，每个向量是m维的，自然在Rm中。dim = rank是去掉自由变量之外的主列数量，base可以是剩下的主列。</li>
+<li>左零空间：本质是能使A的各行通过线性组合形成零行的行变换矩阵（1*m）所形成的空间，所以在Rm中（和行数一致）；当把A变化为行最简式之后，底下有m-r个零行。那么可以通过枚举每一个零行位置的系数为1，其他零行系数为0，然后用其他位置的行来消掉它（因为我们已经知道它是可以被其他行砍成0的），于是base就是的dim = m - r</li>
+<li>行空间：由于初等行变换只是行之间的线性组合，所以各行在变化之后仍在原来的行空间上，所以可以通过将矩阵做行最简式得到一组best base，剩下的行数就是rank，也是dim。所以dim = rank = r；矩阵有m行，所以处于Rm上</li>
+<li>零空间：本质是让满足A*x=0的矩阵x（n行1列）所形成的空间，所以处于Rn上。有几个自由变量，就可以通过枚举每一个自由变量是1，其他是0，用其他主列来砍掉它形成0列（回代），所以dim = n - r。</li>
+<li>矩阵向量形成的空间——Rn到Rn*n的延伸（在所有3乘3矩阵形成的空间中，对角矩阵的dim是多少？可以发现，可以构造三个不同的对角矩阵，任意对角矩阵都可以用他们来构造，所以dim是3，这三个矩阵是3乘3对角矩阵的一个base）：一个空间，想看看它是几维的，就去找它的一个base，看看这个base至少需要几个向量组成。</li>
+</ul>
+<h2 id="图和网络">图和网络</h2><p><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-12.jpg" alt=""></p>
+<h2 id="子空间投影">子空间投影</h2><h3 id="前言——为什么要求投影">前言——为什么要求投影</h3><p>试想有一个二维坐标系，以及三个点(1,1),(2,2),(3,2)。问是否有一根直线穿过这三个点。<br>设直线为$C+Dt=b$<br>于是得到三个方程，分别为：<br>$C+D=1$<br>$C+2D=2$<br>$C+3D=2$<br>抽象为矩阵形式为：<br>$$<br> \left[<br> \begin{matrix}<br>   1 &amp; 1 \\<br>   1 &amp; 2 \\<br>   1 &amp; 3<br>  \end{matrix}<br>  \right] \tag{3}<br>$$<br>与<br>$$<br> \left[<br> \begin{matrix}<br>   C \\<br>   D<br>  \end{matrix}<br>  \right] \tag{3}<br>$$<br>相乘。<br>也就是$Ax=b$的形式，此时由于b不在A的列空间内，于是无解。于是我们希望找到一条与这三条最接近的一条直线，也就是一个近似解，更具体的，我们希望找到一个最接近A列空间的$p$，求出近似解$\hat(x)$，由此投影就在此应用。  </p>
+<h3 id="一维投影">一维投影</h3><p>二维空间中，一个向量投影到一个一条直线（一维子空间）上。<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg" alt=""><br>$$a^T(b-xa)=0$$<br>$$a^Tax=a^Tb$$<br>$$x=\frac{a^Tb}{a^Ta}$$<br>$$p=ax=\frac{aa^Tb}{a^Ta}$$<br>$$P=\frac{aa^T}{a^Ta}$$<br>P（投影矩阵）的性质：</p>
+<ul>
+<li>$p*p=p$</li>
+<li>是对称矩阵</li>
+</ul>
+<h3 id="高维投影">高维投影</h3><p>以一个向量投影到一个平面上（多维子空间）为例<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg" alt=""></p>
+<h2 id="正交矩阵和Gram-Schmidt正交化">正交矩阵和Gram-Schmidt正交化</h2><h3 id="正交矩阵">正交矩阵</h3><p>正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影，有<br>$$p=ax=A(A^TA)^{-1}A^T$$<br>如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$<br>有$$p=ax=Q(Q^TQ)^{-1}Q^T$$<br>由于$Q$每一列$q_i$都互相垂直，长度为1所以有<br>$$ (q_i)^T*q_j=<br>\begin{cases}<br>1&amp; \text{i=j}\\<br>0&amp; \text{i!=j}<br>\end{cases}$$<br>得到<br>$$Q^TQ=I$$</p>
+<h3 id="Gram-Schmidt正交化">Gram-Schmidt正交化</h3><p>这个方法主要来自Gram，Schmidt只提供了将向量单位化（向量除以自己的长度），所以国内广泛称其为施密特正交化，有失偏颇。  </p>
+<p>初始条件：$m*n$矩阵$A$，其各列$a_1,a_2…a_n$线性无关</p>
+<p>目标：将矩阵$A$正交化为正交矩阵$Q$</p>
+<h4 id="一般步骤">一般步骤</h4><p>取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）</p>
+<p>现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。<br>将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。<br>$$q_2=a_2-\frac{A^Ta_2}{A^TA}*A$$（$\frac{A^Ta_2}{A^TA}$是一个常数）</p>
+<p>继续处理$a_i$<br>想得到 $q_i$: </p>
+<ul>
+<li>垂直于 $q_1,q_2…q_{i-1}$  </li>
+<li>$a_1,a_2…a_i$ 与 $q_1,q_2…q_i$ 构成的列空间一致<br>将 $a_i$ 分别投影到 $q_1,q_2…q_{i-1}$ 上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到 $q_i$ </li>
+</ul>
+<p>得到了所有的$q_i$，然后做$q_i=\frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。</p>
+<h4 id="表达式">表达式</h4><p>和$A=LU$分解一样，正交化也有表达式$$A=QR$$<br>$$R=Q^TA$$<br>证明R是个$n*n$的上三角矩阵：</p>
+<ul>
+<li>$Q^T$是$n<em>m$矩阵，$A$是$m</em>n$矩阵，所以R是$n*n$矩阵</li>
+<li>$R_ij=(q_i)^Ta_i$，对于$q_i$来说，它垂直于所有的$q_j,(j&lt;i)$，而所有的$a_j与q_j(j&lt;i)在同一个空间中$，于是$q_i$垂直所有的$a_j,(j&lt;i)$，所以$R$是一个上三角矩阵</li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -312,7 +237,7 @@ $$R=Q^TA$$
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解Ax=b：可解性和解的结构"><span class="toc-number">1.</span> <span class="toc-text">求解Ax=b：可解性和解的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四个基本子空间"><span class="toc-number">2.</span> <span class="toc-text">四个基本子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图和网络"><span class="toc-number">3.</span> <span class="toc-text">图和网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子空间投影"><span class="toc-number">4.</span> <span class="toc-text">子空间投影</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言——为什么要求投影"><span class="toc-number">4.1.</span> <span class="toc-text">前言——为什么要求投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一维投影"><span class="toc-number">4.2.</span> <span class="toc-text">一维投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高维投影"><span class="toc-number">4.3.</span> <span class="toc-text">高维投影</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正交矩阵和Gram-Schmidt正交化"><span class="toc-number">5.</span> <span class="toc-text">正交矩阵和Gram-Schmidt正交化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正交矩阵"><span class="toc-number">5.1.</span> <span class="toc-text">正交矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gram-Schmidt正交化"><span class="toc-number">5.2.</span> <span class="toc-text">Gram-Schmidt正交化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一般步骤"><span class="toc-number">5.2.1.</span> <span class="toc-text">一般步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表达式"><span class="toc-number">5.2.2.</span> <span class="toc-text">表达式</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
