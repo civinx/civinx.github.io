@@ -31,7 +31,7 @@ r = m &amp;lt; n（三维">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg">
-<meta property="og:updated_time" content="2018-02-27T15:49:37.854Z">
+<meta property="og:updated_time" content="2018-02-27T15:51:54.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
@@ -166,7 +166,7 @@ r = m &amp;lt; n（三维">
 <h4 id="一般步骤">一般步骤</h4><p>取第一个向量$a_1$为第一个正交标准向量$q_i$（先不考虑向量长度的事，最后再做处理）</p>
 <p>现在处理$a_2$，想得到$q_2$垂直于$q_1$，且$a_1,a_2$与$q_1,q_2$构成的列空间一致。<br>将$a_2$投影到$q_1$上，得到投影$p$，实际上误差向量$e=b-p$就是我们想要得到的$q_2$。<br>$$q_2=a_2-\frac{A^Ta_2}{A^TA}*A$$（$\frac{A^Ta_2}{A^TA}$是一个常数）</p>
 <p>继续处理$a_i$，想得到$q_i$垂直于$q_1,q<em>2…q</em>{i-1}$，且$a_1,a_2…a_i$与$q_1,q_2…q_i$构成的列空间一致。<br>将$a_i$分别投影到$q_1,q<em>2…q</em>{i-1}$上，并减去投影（可以想象一下这个过程，每次垂直一个q，挪啊挪的），最后得到$q_i$</p>
-<p>得到了所有的$q_i$，然后做$q_i=frac{q_i}{\left|q_i\right|}$，得到最终的正交矩阵Q。</p>
+<p>得到了所有的$q_i$，然后做$q_i=frac{q_i}{|q_i|}$，得到最终的正交矩阵Q。</p>
 <h4 id="表达式">表达式</h4><p>和$A=LU$分解一样，正交化也有表达式$$A=QR$$<br>$$R=Q^TA$$<br>证明R是个$n*n$的上三角矩阵：</p>
 <ul>
 <li>$Q^T$是$n<em>m$矩阵，$A$是$m</em>n$矩阵，所以R是$n*n$矩阵</li>
