@@ -31,7 +31,7 @@ r = m &amp;lt; n（三维">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-1.jpg">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg">
 <meta property="og:image" content="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg">
-<meta property="og:updated_time" content="2018-02-27T17:38:24.335Z">
+<meta property="og:updated_time" content="2018-03-05T07:12:20.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="求解Ax=b：可解性和解的结构设m为行（方程组个数、母空间维度的维数为m）、n为列（变量个数、向量个数)、r为秩
@@ -174,8 +174,8 @@ r = m &amp;lt; n（三维">
 <li>是对称矩阵</li>
 </ul>
 <h3 id="高维投影"><a href="#高维投影" class="headerlink" title="高维投影"></a>高维投影</h3><p>以一个向量投影到一个平面上（多维子空间）为例<br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-2.jpg" alt=""><br><img src="http://oj8wl05o7.bkt.clouddn.com/linear-algebra-15-3.jpg" alt=""></p>
-<h2 id="正交矩阵和Gram-Schmidt正交化"><a href="#正交矩阵和Gram-Schmidt正交化" class="headerlink" title="正交矩阵和Gram-Schmidt正交化"></a>正交矩阵和Gram-Schmidt正交化</h2><h3 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h3><p>正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影，有  </p>
-<script type="math/tex; mode=display">p=ax=A(A^TA)^{-1}A^T</script><p>如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$<br>有<script type="math/tex">p=ax=Q(Q^TQ)^{-1}Q^T</script><br>由于$Q$每一列$q_i$都互相垂直，长度为1所以有</p>
+<h2 id="正交矩阵和Gram-Schmidt正交化"><a href="#正交矩阵和Gram-Schmidt正交化" class="headerlink" title="正交矩阵和Gram-Schmidt正交化"></a>正交矩阵和Gram-Schmidt正交化</h2><h3 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h3><p>正交矩阵能为后续计算带来便利。比如求一个矩阵$A$列空间上的投影矩阵，有  </p>
+<script type="math/tex; mode=display">P=Ax=A(A^TA)^{-1}A^T</script><p>如果矩阵的每一列都是标准正交向量（长度为1，互相垂直），那么称这个矩阵为正交矩阵，记为$Q$<br>有<script type="math/tex">P=Qx=Q(Q^TQ)^{-1}Q^T</script><br>由于$Q$每一列$q_i$都互相垂直，长度为1所以有</p>
 <script type="math/tex; mode=display">(q_i)^T×q_j=
 \begin{cases}
 1& i = j\\
